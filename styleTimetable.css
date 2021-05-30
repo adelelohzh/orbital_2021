@@ -96,7 +96,8 @@ a{
 }
 
 .header-left {
-    padding-left: 50px;
+    /* padding-left: 50px; */
+    float: left;
 }
 
 .header-right {

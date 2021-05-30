@@ -71,7 +71,7 @@
 {
     width:100%;
     height:120px;
-    background-color: #fff;
+    background-color: #eee2dc;
     border: 2.5px solid #EF7C00;
 }
 
@@ -392,7 +392,3 @@
 
 /* ---------------------------- */
 
-.form_input
-{
-
-}
