@@ -1,16 +1,19 @@
 <!DOCTYPE html>
     <html>
-        <title>myNUS</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-        <style>
-            body {font-family: "Times New Roman", Georgia, Serif;}
-            h1, h2, h3, h4, h5, h6 {
-                font-family: "Playfair Display";
-                letter-spacing: 5px;
-            }
-        </style>
+        <head>
+            <title>myNUS</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="style.css">
+            <script defer src ="script.js"></script>
+            <style>
+                body {font-family: "Times New Roman", Georgia, Serif;}
+                h1, h2, h3, h4, h5, h6 {
+                    font-family: "Playfair Display";
+                    letter-spacing: 5px;
+                }
+            </style>
+        </head>
 
     <body class = "full grey">
     
@@ -18,17 +21,98 @@
     <div class = "header">
         <nav class = "bar top">
             <ul class = "header-left">
-                <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco mylogofont blockdisplay">my</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco nuslogofont blockdisplay">NUS</a></li>
+                <li class = "nostyle inlineblock leftfloat centered"><a href='main.html' class = "nodeco mylogofont blockdisplay">my</a></li>
+                <li class = "nostyle inlineblock leftfloat centered"><a href='main.html' class = "nodeco nuslogofont blockdisplay">NUS</a></li>
             </ul>
-            <ul class = "header-right">
-                <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco blockdisplay">Home</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco blockdisplay">Timetable</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco blockdisplay">To-Do List</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco blockdisplay">Shuttle Bus</a></li>
+            <ul class = "header-right inlineblock">
+                <li class = "nostyle inlineblock leftfloat centered"><a href='main.html' class = "nodeco blockdisplay">Home</a></li>
+                <li class = "nostyle inlineblock leftfloat centered"><a href='timetable.html' class = "nodeco blockdisplay">Timetable</a></li>
+                <li class = "nostyle inlineblock leftfloat centered"><a href='todolist.html' class = "nodeco blockdisplay">To-Do List</a></li>
+                <li class = "nostyle inlineblock leftfloat centered"><a href='shuttlebus.html' class = "nodeco blockdisplay">Shuttle Bus</a></li>
             </ul>
         </nav>
     </div>
-    Hello world.
+    <!-- End of header -->
+    
+    <div class = "to-do-body">
+        <h1 class = "title">To-Do List</h1>
+        <div class="all-tasks">
+            <h2 class="tasks-list-title">Task Lists</h2>
+            <ul class="task-list" data-lists>
+                <!-- <li class = "list-name active-list">CS1010J</li>
+                <li class = "list-name">CS1231</li> -->
+            </ul>
+
+            <form action="" data-new-list-form>
+                <input type="text"
+                class = "new list"
+                data-new-list-input
+                placeholder="new list name"
+                aria-label="new list name"
+                />
+                <button class="btn-list" aria-label="create new list">+</button>
+            </form> 
+        </div>
+
+        <div class="todo-list" data-tasks>
+            <div class="todoheader">
+                <h2 class= "list-title" data-list-title>One</h2>
+            </div>
+            <div class="todobody" >
+                <div class="tasks" data-list-tasks>
+                    
+                    <!-- <div class="task">
+                        <input 
+                        type="checkbox"
+                        id = "task-1"
+                        />
+                        <label for = "task-1">
+                            <span class = "custom-checkbox"></span>
+                            assignment1
+                        </label>
+                    </div>
+
+                    
+                    <div class="task">
+                        <input 
+                        type="checkbox"
+                        id = "task-2"
+                        />
+                        <label for = "task-2">
+                            <span class = "custom-checkbox"></span>
+                            assignment2
+                        </label>
+                    </div> -->
+
+                </div>
+
+                <div class="new-task-creator">
+                    <form action="" data-new-task-form>
+                        <input type="text"
+                        class = "new task"
+                        data-new-task-input
+                        placeholder="new task name"
+                        aria-label="new task name"
+                        />
+                        <button class="btn-task" aria-label="create new task">+</button>
+                    </form>
+                </div> 
+
+                <div class="delete-tasks">
+                    <button class = "btn-delete" data-clear-list>Clear Completed Tasks</button>
+                    <button class = "btn-delete" data-delete-list>Delete List</button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <template id = "task-template">
+            <div class="task">
+                <input type="checkbox"/>
+                <label>
+                    <span class = "custom-checkbox"></span>
+                </label>
+            </div>
+        </template>
     </body>
 </html>
