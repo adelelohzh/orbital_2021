@@ -13,11 +13,75 @@ const taskTemplate = document.getElementById('task-template')
 const newTaskForm = document.querySelector('[data-new-task-form]')
 const newTaskInput = document.querySelector('[data-new-task-input]')
 
+const cancelPopoutBtn = document.querySelector('[data-cancel-popout]')
+
+const editTaskForm = document.querySelector('[data-edit-task-form]')
+const editTaskNameInput = document.querySelector('[data-edit-task-name-input]')
+const editTaskDeadlineInput = document.querySelector('[data-edit-task-deadline-input]')
+
+const closeErrorBtn = document.querySelector('[data-close-error-popout]')
+
 const localStorageKey = 'my.list'
 const localStorageKeyCurrentList = 'current.list.selection'
+const localStorageKeyCurrentTask = 'current.task.selection'
+
+const errorPopout = document.querySelector('[data-error-popout]')
+const popoutBox = document.querySelector('[data-popout]')
 
 let lists = JSON.parse(localStorage.getItem(localStorageKey)) || []
 let currentListId = localStorage.getItem(localStorageKeyCurrentList) 
+
+closeErrorBtn.addEventListener('click', event => 
+{
+    errorPopout.style.display = 'none'
+})
+
+
+editTaskForm.addEventListener('submit' , event => 
+{
+    event.preventDefault()
+    const newTaskName = editTaskNameInput.value
+    const newTaskDeadline = editTaskDeadlineInput.value
+
+    const currentList = lists.find(list => list.id === currentListId)
+    const currentTaskId = localStorage.getItem(localStorageKeyCurrentTask) 
+    const currentTask = currentList.tasks.find(task => task.id === currentTaskId)
+
+    if (newTaskName === '') 
+    {
+        if (newTaskDeadline !== '') 
+        {
+            const newDeadline = new Date(newTaskDeadline.toString())
+            currentTask.deadline = newDeadline 
+            savePage()
+            init()
+        }
+        else 
+        {
+            errorPopout.style.display = ''
+        }
+    } 
+    else
+    {
+        currentTask.name = newTaskName
+        if (newTaskDeadline !== '') 
+        {
+            const newDeadline = new Date(newTaskDeadline.toString())
+            currentTask.deadline = newDeadline 
+        }
+
+        savePage()
+        init()
+    }
+
+    popoutBox.style.display = 'none'
+})
+
+
+cancelPopoutBtn.addEventListener('click', event =>
+{
+    popoutBox.style.display = 'none'
+})
 
 clearListBtn.addEventListener('click', event => 
 {
@@ -36,8 +100,18 @@ listTasks.addEventListener('click', event =>
         const selectedTask = currentList.tasks.find(task => task.id === checkboxId)
         selectedTask.complete = event.target.checked
         savePage()
+    } 
+    else if (event.target.tagName.toLowerCase() === "i")
+    {
+        popoutBox.style.display = ''
+        const currentList = lists.find(list => list.id === currentListId)
+        const optionButtonId = event.target.id // isit optionbuttonid or isit i.id
+        const selectedTask = currentList.tasks.find(task => task.id === optionButtonId)
+        const currentTaskId = selectedTask.id
+        localStorage.setItem(localStorageKeyCurrentTask, currentTaskId)
     }
 })
+
 
 deleteListBtn.addEventListener('click' , event =>
 {
@@ -111,7 +185,8 @@ function createTask(taskName)
     return {
         id: Date.now().toString(),
         name: taskName,
-        complete: false
+        complete: false,
+        deadline: ''
     }
 }
 
@@ -148,6 +223,9 @@ function init ()
         clear(listTasks)
         initTasks(currentList)
     }
+
+    popoutBox.style.display = 'none'
+    errorPopout.style.display = 'none'
 }
 
 function initTasks(currentList)
@@ -157,9 +235,18 @@ function initTasks(currentList)
         const checkbox = taskElement.querySelector('input')
         checkbox.id = t.id
         checkbox.checked = t.complete
-        const label = taskElement.querySelector('label')
-        label.htmlFor = t.id
-        label.append(t.name)
+        const nameLabel = taskElement.querySelector('.name')
+        nameLabel.htmlFor = t.id
+        nameLabel.append(t.name)
+        const dateLabel = taskElement.querySelector('.deadline')
+        dateLabel.htmlFor = t.id
+        // if (t.deadline !== null)
+        // {
+        //     const currDeadline = new Date(t.deadline).toISOString().slice(0, 10)
+        //     dateLabel.append(currDeadline)
+        // }
+        const optionBtn = taskElement.querySelector('[data-option-button]')
+        optionBtn.id = t.id
         listTasks.appendChild(taskElement)
     })
 }

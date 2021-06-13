@@ -1,21 +1,16 @@
-.top
-{
-    width:100%;
-    z-index:1
+.fontsset1{
+    /* font-family: Georgia, Verdana, Helvetica */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.bottom
-{
-    position:fixed;
-    width:100%;
-    z-index:1
+/* Links */
 
+a{
+    text-decoration: none;
 }
 
-.block
-{
-    display:block
-}
+
+/* End of Links */
 
 .nodeco
 {
@@ -60,6 +55,11 @@
     background-color: #eee;
 }
 
+.static
+{
+    position: static;
+}
+
 .blockdisplay
 {
     display:block;
@@ -69,26 +69,40 @@
 
 .header
 {
+    position: static;
     width:100%;
-    height:120px;
+    height:100px;
+    line-height: 100px;
     background-color: #eee2dc;
     border: 2.5px solid #EF7C00;
+    box-sizing: border-box;
 }
 
 .header-left {
-    float:left;
+    margin: auto;
+    position: absolute;
+    left: 0%;
 }
 
 .header-right {
-    box-sizing: border-box;
-    float:right;
+    margin: auto;
+    position: absolute;
+    right: 1%;
 }
 
 .header-right a{
-    padding: 0 60px;
-    font-size: 20px;
+    padding: 0 20px;
+    font-size: 15px;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #1e1e1e;
+}
+
+.header-right a:visited{
+    color: #1e1e1e;
+}
+
+.header-right a:hover{
+    color: #EF7C00;
 }
 
 .mylogofont
@@ -106,7 +120,6 @@
     font-family:Rockwell Nova Light, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: #EF7C00;
 }
-
 
 /* ---------------------------- */
 
@@ -218,11 +231,6 @@
      margin-top: 10px;
  }
 
- .task
- {
-    font-size: 20px;
- }
-
  .btn-task
  {
      cursor: pointer;
@@ -260,7 +268,7 @@
 
 .custom-checkbox
 {
-    display:flex;
+    display: flex;
     width: 0.75em;
     height: 0.75em;
     cursor:pointer;
@@ -303,6 +311,9 @@
 .task
 {
     position: relative;
+    font-size: 20px;
+    display: flex;
+    justify-content:space-between;
 }
 
 .task::after
@@ -311,10 +322,10 @@
     position:absolute;
     right: 0;
     left: 0;
-    bottom: -1rem;
+    bottom: 0.5rem;
     height: 1.5px;
     background: currentColor;
-    opacity: 0.1;
+    opacity: 0.14;
 }
 
 .task label::after
@@ -325,9 +336,16 @@
     left: 2rem;
     top: 50%;
     height: 1.5px;
+    width:auto;
     background: currentColor;
 
     transform: scaleX(0);
+}
+
+.deadline
+{
+    color: grey;
+    font-size: 15px;
 }
 
 [type="checkbox"]:checked + label::after
@@ -345,31 +363,152 @@
 
 }
 
+.option-btn
+{
+    display: inline-block;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    line-height: 10px;
+}
+
+.option-btn:hover
+{
+    color: slategrey;
+}
+
+.popout
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(136, 133, 133, 0.267);
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    top: 0px;
+}
+
+.popout-content
+{
+    position: relative;
+    width: 600px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 100%;
+    border-style:groove;
+    border-width: 6px;
+}
+
+
+/* .edit-task
+{
+    padding: 10px;
+    position: relative;
+    margin-left: 50px;
+    font-size: 20px;
+    bottom: -10px;
+}
+
+
+.edit
+{
+    margin-left: 50px;
+    padding: 8px;
+    position: relative;
+}
+
+.edit::after
+{
+    border-radius: 5px;
+}
+
+.save-btn
+{
+    position: relative;
+    bottom: -50px;
+    font-size: 13px;
+}
+
+
+.edit-task input
+{
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+}
+
+.edit-task label
+{
+    display: block;
+} */
+
+.edit-task form
+{
+    margin: 20px;
+}
+.edit-task input
+{
+    display: block;
+    width: 200px;
+}
+
+
+
+.cancel-btn
+{
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.errorPopout
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(136, 133, 133, 0.267);
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    top: 0px;
+}
+
+.errorPopout-content
+{
+    position: relative;
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 100%;
+    border-style:groove;
+    border-width: 7px;
+}
+
+.close-btn
+{
+    font-size: 14px;
+}
 
 /* ---------------------------- */
 
-.timingbox
+/* .timingbox
 {
     padding: 0px;
     margin: 0px;
-}
-
-.box ul li{
-    list-style: none;
-    float: right;
-    width: 15%;
-    height: 90px;
-    background: grey;
-    margin-right: 130px;
-} 
-
-.box ul li .busname
-{
-    width: 100%
-    height: 50px;
-    line-height: 35px;
-    background: darkgrey;
-    text-align:center;
 }
 
 .dropdown {
@@ -418,12 +557,54 @@
   
 .dropdown:hover .dropdown-content {
     display: block;
+} */
+
+.shuttlebusbody{
+    display: grid;
+    grid: 
+    "header header" auto
+    "subheader subheader" auto
+    "option busbox" auto;
 }
 
-/* ---------------------------- */
-
-.form_input
+.bustimings
 {
+    grid-area: busbox;
 
 }
+
+.box ul
+{
+    display: block;
+    justify-content: space-around;
+    margin-right: 100px;
+}
+
+.box ul li{
+    list-style: none;
+    width: 35%;
+    height: 90px;
+    background: grey;
+    display: inline-block;
+    margin-top: 10px;
+} 
+
+.box ul li .busname
+{
+    width: 100%;
+    height: 50px;
+    line-height: 35px;
+    background: darkgrey;
+    text-align:center;
+}
+
+.dropdown
+{
+    grid-area: option;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: -100px;
+    margin-top: 50px;
+}
+/* ---------------------------- */
 
