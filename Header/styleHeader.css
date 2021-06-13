@@ -1,0 +1,124 @@
+.fontsset1{
+    /* font-family: Georgia, Verdana, Helvetica */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Links */
+
+a{
+    text-decoration: none;
+}
+
+
+/* End of Links */
+
+.nodeco
+{
+    text-decoration: none;
+}
+
+.listfont
+{
+    font-size: 16px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1e1e1e;
+}
+
+.nostyle
+{
+    list-style: none;
+}
+
+.inlineblock
+{
+    display: inline-block;
+}
+
+.leftfloat
+{
+    float: left;
+}
+
+.centered
+{
+    line-height: 90px;
+}
+
+.full
+{
+    margin: 0;
+    padding: 0;
+}
+
+.grey
+{
+    background-color: #eee;
+}
+
+.static
+{
+    position: static;
+}
+
+.blockdisplay
+{
+    display:block;
+}
+
+/* Specific to header */
+
+.header
+{
+    position: static;
+    width:100%;
+    height:17vh;
+    line-height: 17vh;
+    background-color: #eee2dc;
+    border: 2.5px solid #EF7C00;
+    box-sizing: border-box;
+}
+
+.header-left {
+    margin: auto;
+    position: absolute;
+    left: 0%;
+}
+
+.header-right {
+    margin: auto;
+    position: absolute;
+    right: 1%;
+}
+
+.header-right a{
+    padding: 0 20px;
+    font-size: 15px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1e1e1e;
+}
+
+.header-right a:visited{
+    color: #1e1e1e;
+}
+
+.header-right a:hover{
+    color: #EF7C00;
+}
+
+.mylogofont
+{
+    font-size:56px;
+    font-weight: bold;
+    font-family:Rockwell Nova Light, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #003D7C;
+}
+
+.nuslogofont
+{
+    font-size:56px;
+    font-weight: bold;
+    font-family:Rockwell Nova Light, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #EF7C00;
+}
+
+/* ---------------------------- */
