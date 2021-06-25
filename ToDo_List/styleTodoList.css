@@ -1,0 +1,548 @@
+.fontsset1{
+    /* font-family: Georgia, Verdana, Helvetica */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Links */
+
+a{
+    text-decoration: none;
+}
+
+
+/* End of Links */
+
+.nodeco
+{
+    text-decoration: none;
+}
+
+.listfont
+{
+    font-size: 16px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1e1e1e;
+}
+
+.nostyle
+{
+    list-style: none;
+}
+
+.inlineblock
+{
+    display: inline-block;
+}
+
+.leftfloat
+{
+    float: left;
+}
+
+.centered
+{
+    line-height: 90px;
+}
+
+.full
+{
+    margin: 0;
+    padding: 0;
+}
+
+.grey
+{
+    background-color: #eee;
+}
+
+.static
+{
+    position: static;
+}
+
+.blockdisplay
+{
+    display:block;
+}
+
+/* Specific to header */
+
+.header
+{
+    position: static;
+    width:100%;
+    height:100px;
+    line-height: 100px;
+    background-color: #eee2dc;
+    border: 2.5px solid #EF7C00;
+    box-sizing: border-box;
+}
+
+.header-left {
+    margin: auto;
+    position: absolute;
+    left: 0%;
+}
+
+.header-right {
+    margin: auto;
+    position: absolute;
+    right: 1%;
+}
+
+.header-right a{
+    padding: 0 20px;
+    font-size: 15px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1e1e1e;
+}
+
+.header-right a:visited{
+    color: #1e1e1e;
+}
+
+.header-right a:hover{
+    color: #EF7C00;
+}
+
+.mylogofont
+{
+    font-size:56px;
+    font-weight: bold;
+    font-family:Rockwell Nova Light, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #003D7C;
+}
+
+.nuslogofont
+{
+    font-size:56px;
+    font-weight: bold;
+    font-family:Rockwell Nova Light, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #EF7C00;
+}
+
+/* ---------------------------- */
+
+ .to-do-body{
+     display: grid;
+     grid: 
+     "header header header header header" auto
+     "subheader subheader subheader subheader subheader" auto
+     ".... lists task .... ...." auto /
+
+     1fr minmax(100px, 150px) minmax(250px, 500px) minmax(50px, 100px) 1fr;
+ }
+
+ .title
+ {
+     margin-left : 50px;
+     grid-area:subheader;
+     text-align: left;
+     font-size: 40px;
+     text-decoration: underline;
+ }
+
+ .all-tasks
+ {
+     position: relative;
+     top: 80px;
+     grid-area: lists;
+     font-size: 10px;
+     display:ruby-base;
+ }
+
+ .tasks-list-title
+ {
+     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     letter-spacing: 2.0px;
+     text-decoration: underline;
+ }
+ 
+ .todo-list
+ {
+     grid-area: task;
+     background-color: lightgrey;
+ }
+
+ .task-list 
+ {
+    font-size: 1.0rem;
+    line-height: 1.5;
+    list-style: circle;
+    cursor:pointer;
+ }
+
+ .new
+ {
+     background: transparent;
+     border:0px;
+     border-bottom: 1px solid;
+     outline: none;
+     bottom: 15px;
+     left: 5px;
+
+     transition: border-bottom 150ms ease-in;
+ }
+
+ .list
+ {
+    width: 90px;
+ }
+
+ .list-title
+ {
+     margin: 4px;
+ }
+
+ .new:focus 
+ {
+     border-bottom-width: 3px;
+ }
+
+ .active-list
+ {
+     font-weight: 700;
+     font-size: 1.2rem;
+ }
+
+ form
+ {
+     display: flex;
+ }
+
+ button
+ {
+     cursor: pointer;
+ }
+
+ .todoheader
+ {
+     font-family:Arial, Helvetica, sans-serif;
+     font-size: 25px;
+     background-color: lightslategray;
+     padding: 10px;
+ }
+
+ .todobody
+ {
+     position: relative;
+     padding: 10px;
+     margin: 5px;
+     margin-top: 10px;
+ }
+
+ .btn-list
+ {
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-right: 0.25rem;
+    transition: opacity 250ms ease-in;
+ }
+
+ .btn-task
+ {
+     cursor: cursor;
+     background: 0;
+     border: 0;
+     padding: 10;
+     font-size: 1.25rem;
+     font-weight: 800;
+     margin-right: 0.25rem;
+     transition: opacity 250ms ease-in;
+ }
+
+.btn-task:hover
+{
+    color:rgb(59, 127, 230);
+}
+
+ .btn-delete
+{
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 4px;
+    margin: 0;
+    background: inherit;
+    border: 0.1rem solid black;
+    border-radius: 4px;
+
+    transition: 150ms ease-in;
+}
+
+.btn-delete:hover
+{
+    background-color: grey;
+    color: white;
+}
+
+.btn-clear
+{
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 4px;
+    margin: 0;
+    margin-right: 100px;
+    background: inherit;
+    border: 0.1rem solid black;
+    border-radius: 4px;
+
+    transition: 150ms ease-in;
+}
+
+
+.btn-clear:hover
+{
+    background-color: grey;
+    color: white;
+}
+
+[type="checkbox"]
+{
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-checkbox
+{
+    --size: 0.75em;
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    cursor:pointer;
+    margin-right: 0.75em;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}
+
+.task:hover .custom-checkbox,
+[type="checkbox"]:focus + label .custom-checkbox
+{
+    transform: scale(1.2);
+    color: rgb(59, 127, 230);
+}
+
+[type="checkbox"]:checked + label .custom-checkbox
+{
+    background: rgb(59, 127, 230);
+    border : 2px solid black;
+    box-shadow: inset 0 0 0px 1px white;
+}
+
+[type="checkbox"]:checked + label
+{
+    opacity: 0.3;
+}
+
+[type="checkbox"]:checked + label::after
+{
+    transform: scaleX(1);
+} 
+
+.task label
+{
+    display: flex;
+    align-items:center;
+    position:relative;
+    margin-bottom: 2rem;
+}
+
+.task
+{
+    position: relative;
+    font-size: 20px;
+    display: flex;
+    justify-content:space-between;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.task::after
+{
+    content: "";
+    position:absolute;
+    right: 0;
+    left: 0;
+    bottom: 0.5rem;
+    height: 1.5px;
+    background: black;
+    opacity: 0.14;
+}
+
+.task label::after
+{
+    content: "";
+    position:absolute;
+    right: 0;
+    left: 2rem;
+    top: 50%;
+    height: 1.5px;
+    background: black;
+
+    transform: scaleX(0);
+}
+
+.deadline
+{
+    color: grey;
+    font-size: 15px;
+}
+
+.delete-tasks
+{
+    display:flex;
+    position: absolute;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    left: 0;
+}
+
+.option-btn
+{
+    display: inline-block;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    line-height: 10px;
+}
+
+.option-btn:hover
+{
+    color: slategrey;
+}
+
+.popout
+{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(136, 133, 133, 0.267);
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    top: 0px;
+    z-index: 100;
+}
+
+.popout .popout-content
+{
+    position: relative;
+    width: 600px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 100%;
+    border-style:groove;
+    border-width: 6px;
+    z-index: 101;
+}
+
+
+.edit-task
+{
+    padding: 10px;
+    position: relative;
+    margin-left: 50px;
+    font-size: 20px;
+    bottom: -10px;
+}
+
+
+.edit
+{
+    margin-left: 50px;
+    padding: 8px;
+    position: relative;
+}
+
+.edit::after
+{
+    border-radius: 5px;
+}
+
+.save-btn
+{
+    position: relative;
+    bottom: -50px;
+    font-size: 13px;
+}
+
+
+.edit-task input
+{
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+}
+
+.edit-task label
+{
+    display: block;
+}
+
+.edit-task form
+{
+    margin: 20px;
+}
+.edit-task input
+{
+    display: block;
+    width: 200px;
+}
+
+
+
+.cancel-btn
+{
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.errorPopout
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(136, 133, 133, 0.267);
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    top: 0px;
+}
+
+.errorPopout-content
+{
+    position: relative;
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 100%;
+    border-style:groove;
+    border-width: 7px;
+    z-index: 102;
+}
+
+.close-btn
+{
+    font-size: 14px;
+}

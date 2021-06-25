@@ -27,7 +27,7 @@
         ?>
 
         <div class = "main-left">
-            <?php echo "<p class = 'fontsset1'>Hello there, " . $_SESSION["useruid"] . "</p>"; ?>               
+            <?php echo "<p class = 'fontsset1'>Hello there, " . $_SESSION["usersuid"] . "</p>"; ?>               
         </div>
 
         <div class = "main-right">

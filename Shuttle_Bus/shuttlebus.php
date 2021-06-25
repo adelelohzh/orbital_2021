@@ -6,9 +6,9 @@
     <html>
         <title>myNUS</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styleHeader.css">
+        <link rel="stylesheet" href="../Shuttle_Bus/styleShuttle.css">
         <style>
-            <?php include 'styleHeader.css'; ?>
+             <?php include '../Header/styleHeader.css'; ?>
         </style>
 
     <body class = "full grey">
@@ -33,30 +33,6 @@
                     <li class = "nostyle inlineblock"><a href='../Login_Signup/includes/logout.inc.php' class = "nodeco blockdisplay">Logout</a></li>
                 </ul>
         <?php } ?>       
-    </div>
-    
-    <body class = "full grey">
-
-    <!-- Header -->
-    <div class = "header">
-        <nav class = "navigation">
-            <ul class = "header-left">
-                <li><a href='main.html' class = "nodeco mylogofont blockdisplay">my</a></li>
-                <li><a href='main.html' class = "nodeco nuslogofont blockdisplay">NUS</a></li>
-            </ul>
-            <!-- <ul class = "header-right inlineblock">
-                <li class = "nostyle inlineblock leftfloat centered"><a href='main.html' class = "nodeco blockdisplay">Home</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='timetable.html' class = "nodeco blockdisplay">Timetable</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='todolist.html' class = "nodeco blockdisplay">To-Do List</a></li>
-                <li class = "nostyle inlineblock leftfloat centered"><a href='shuttlebus.html' class = "nodeco blockdisplay">Shuttle Bus</a></li>
-            </ul> -->
-            <ul class = "header-right">
-                <li><a href='main.html' class = "nodeco blockdisplay">Home</a></li>
-                <li><a href='timetable.html' class = "nodeco blockdisplay">Timetable</a></li>
-                <li><a href='todolist.html' class = "nodeco blockdisplay">To-Do List</a></li>
-                <li><a href='shuttlebus.html' class = "nodeco blockdisplay">Shuttle Bus</a></li>
-            </ul>
-        </nav>
     </div>
     <!-- End of header -->
 
