@@ -1,3 +1,7 @@
+<?php
+  include_once 'includes/dbh.inc.php';
+?>
+
 <!DOCTYPE html>
     <html>
         <title>myNUS</title>
@@ -8,7 +12,33 @@
         </style>
 
     <body class = "full grey">
-    <?php include_once '../Header/Header.php'; ?>  
+    <?php 
+      include_once '../Header/Header.php';
+
+      //Accessing data from database
+      $userID = $_SESSION["userid"];
+      $sql = "SELECT * FROM schedules WHERE userID = $userID;";
+      $result = mysqli_query($conn, $sql);
+      $classes = array();
+      $resultCheck = mysqli_num_rows($result);
+      if($resultCheck > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+          array_push($classes, $row);         
+        }
+      }
+
+      $modules = array();
+      //Creating list of currently selected modules
+      foreach($classes as $class) {
+        if (!is_null($class['userID'])) {
+          $temp = array($class['moduleCode'], $class['moduleName']);
+          if (!in_array($temp, $modules)) {
+            $module = array($class['moduleCode'], $class['moduleName']);
+            array_push($modules, $module);
+          }
+        }
+      }
+    ?>  
 
     <!-- Timetable -->
     <table class="timetable fontsset1">
@@ -32,72 +62,209 @@
       <tbody>
         <tr>
           <td>Monday</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>    
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 10800 && $class['endTime'] >= 10900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 10900 && $class['endTime'] >= 11000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11000 && $class['endTime'] >= 11100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11100 && $class['endTime'] >= 11200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11200 && $class['endTime'] >= 11300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11300 && $class['endTime'] >= 11400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11400 && $class['endTime'] >= 11500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11500 && $class['endTime'] >= 11600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11600 && $class['endTime'] >= 11700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11700 && $class['endTime'] >= 11800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
         </tr>
         <tr>
           <td>Tuesday</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>    
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 20800 && $class['endTime'] >= 20900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 20900 && $class['endTime'] >= 21000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21000 && $class['endTime'] >= 21100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21100 && $class['endTime'] >= 21200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21200 && $class['endTime'] >= 21300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21300 && $class['endTime'] >= 21400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21400 && $class['endTime'] >= 21500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21500 && $class['endTime'] >= 21600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21600 && $class['endTime'] >= 21700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21700 && $class['endTime'] >= 21800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>   
         </tr>
         <tr>
           <td>Wednesday</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>    
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 30800 && $class['endTime'] >= 30900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 30900 && $class['endTime'] >= 31000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31000 && $class['endTime'] >= 31100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31100 && $class['endTime'] >= 31200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31200 && $class['endTime'] >= 31300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31300 && $class['endTime'] >= 31400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31400 && $class['endTime'] >= 31500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31500 && $class['endTime'] >= 31600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31600 && $class['endTime'] >= 31700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31700 && $class['endTime'] >= 31800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>    
         </tr>
         <tr>
           <td>Thursday</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>    
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 40800 && $class['endTime'] >= 40900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 40900 && $class['endTime'] >= 41000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41000 && $class['endTime'] >= 41100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41100 && $class['endTime'] >= 41200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41200 && $class['endTime'] >= 41300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41300 && $class['endTime'] >= 41400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41400 && $class['endTime'] >= 41500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41500 && $class['endTime'] >= 41600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41600 && $class['endTime'] >= 41700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41700 && $class['endTime'] >= 41800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>    
         </tr>
         <tr>
           <td>Friday</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>    
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 50800 && $class['endTime'] >= 50900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 50900 && $class['endTime'] >= 51000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51000 && $class['endTime'] >= 51100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51100 && $class['endTime'] >= 51200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51200 && $class['endTime'] >= 51300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51300 && $class['endTime'] >= 51400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51400 && $class['endTime'] >= 51500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51500 && $class['endTime'] >= 51600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51600 && $class['endTime'] >= 51700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
+          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51700 && $class['endTime'] >= 51800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td> 
         </tr>                            
        </tbody>
 
     </table>
+
+    <div class = "bottom-half">
+      <div class = "current-modules">
+        <table class = "current-modules fontsset1">
+          <tr>
+            <td>Your Current Modules:</td>
+            <?php
+            //Script to delete modules
+              foreach($modules as $module) {
+                echo "<td>".implode($module)."
+                  <form class='inline' action='includes/deleteClass.inc.php' method='POST'>
+                    <input type='hidden' name='moduleCode' value='".$module[0]."'>
+                    <input class='inline' type='submit' name='submit' value='X'>
+                  </form> 
+                </td>";
+              }
+            ?>
+          </tr>
+        </table>
+        <p class = "fontsset1">Search for modules:</p>
+      </div>
+
+      <form class="form" action="Timetable.php" method="POST">
+        <input class="search-bar" name="module" type="text" placeholder="Enter module code here..">
+        <button type="submit">Search</button>
+      </form>
+
+      <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          $url = "https://api.nusmods.com/v2/2021-2022/modules/{$_POST['module']}.json";
+          $moduledata = @file_get_contents($url);
+          if ($moduledata === FALSE) { 
+            echo "<p class='fontsset1 status-message'>Invalid module code/No module code entered</p>"; 
+          } else {
+            $decodedmoduledata = json_decode($moduledata, true);
+            //Data (For class types that have multiple lessons in a week, users have to select each lesson individually.)
+            $moduleCode = $decodedmoduledata['moduleCode']; //Module code
+            $moduleName = $decodedmoduledata['title']; //Module title
+            $semesterData = $decodedmoduledata['semesterData'][0]['timetable']; //for semester1 only. assuming all is semester 1
+            $lectures = array(); //2d array for lectures: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
+            $tutorials = array(); //2d array for tutorials: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
+            $recitations = array(); //2d array for recitations: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
+            $labs = array(); //2d array for labs: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
+            foreach($semesterData as $class) {
+              switch($class['lessonType']) {
+                case "Lecture":
+                  $temp = array(array("Lecture " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName)); 
+                  $lectures = array_merge($lectures, $temp);
+                  break;
+                case "Tutorial":
+                  $temp = array(array("Tutorial " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName));
+                  $tutorials = array_merge($tutorials, $temp);
+                  break;
+                case "Recitation":
+                  $temp = array(array("Recitation " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName));
+                  $recitations = array_merge($recitations, $temp);
+                  break;
+                case "Laboratory":
+                  $temp = array(array("Lab " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName));
+                  $labs = array_merge($labs, $temp);
+                  break;
+              }
+            }
+            /*
+            echo print_r($lectures);
+            echo "<br>";
+            echo print_r($tutorials);
+            echo "<br>";
+            echo print_r($recitations);
+            echo "<br>";
+            echo print_r($labs);
+            */
+            $output = '<p class="fontsset1 status-message">Currently viewing timings for: '.$moduleCode.' '.$moduleName.'</p>'; //Display message
+            echo $output;
+          } 
+        }
+      ?>
+
+      <div class = "detail-select">
+        <p>
+
+          <form class = "select-form" action="includes/addClass.inc.php" method="POST">
+            <select name="selectClass" placeholder="Select lecture timeslot">
+              <option value="" disabled selected>Select Lecture Timeslot</option>
+              <?php
+              foreach($lectures as $class) {
+                $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
+                echo "<option value='$class[0], $class[1], $class[2], $class[3], $class[4], $class[5]'>$JOIN_VAR</option>";
+              }
+              ?>
+            </select>
+            <input type="submit" name="submit" value="Submit">
+          </form>
+
+          <form class = "select-form" action="includes/addClass.inc.php" method="POST"> 
+            <select name="selectClass" placeholder="Select tutorial timeslot">
+              <option value="" disabled selected>Select Tutorial Timeslot</option>
+              <?php
+              foreach($tutorials as $class) {
+                $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
+                echo "<option value='$class[0], $class[1], $class[2], $class[3], $class[4], $class[5]'>$JOIN_VAR</option>";
+              }
+              ?>
+            </select>
+            <input type="submit" name="submit" value="Submit">
+          </form>
+
+          <form class = "select-form" action="includes/addClass.inc.php" method="POST">
+            <select name="selectClass" placeholder="Select recitation timeslot">
+              <option value="" disabled selected>Select Recitation Timeslot</option>
+              <?php
+              foreach($recitations as $class) {
+                $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
+                echo "<option value='$class[0], $class[1], $class[2], $class[3], $class[4], $class[5]'>$JOIN_VAR</option>";
+              }
+              ?>
+            </select>
+            <input type="submit" name="submit" value="Submit">
+          </form>
+
+          <form class = "select-form" action="includes/addClass.inc.php" method="POST">
+            <select name="selectClass" placeholder="Select lab timeslot">
+              <option value="" disabled selected>Select Lab Timeslot</option>
+              <?php
+              foreach($labs as $class) {
+                $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
+                echo "<option value='$class[0], $class[1], $class[2], $class[3], $class[4], $class[5]'>$JOIN_VAR</option>";
+              }
+              ?>
+            </select>
+            <input type="submit" name="submit"  value="Submit">
+          </form>
+
+        </p>
+      </div>
+
+    </div>
 
     </body>
 </html>

@@ -39,6 +39,11 @@ a{
     display: inline-block;
 }
 
+.inline
+{
+    display: inline;
+}
+
 .leftfloat
 {
     float: left;
@@ -67,7 +72,9 @@ a{
 
 /* Specific to Timetable */
 .timetable{
-    padding: 50px;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-top: 5vh;
     width: 100%;
 }
 
@@ -80,10 +87,11 @@ a{
   border: 1px solid black;
   padding: 6px;
   text-align: center;
-  height: 75px;
+  height: 10vh;
+  width: 10vh;
 }
 .timetable tbody tr td:first-child {
-    width: 10%;
+  width: 10%;
   background-color: #FFF;
   font-weight: bold;
   border-color: #EF7C00;
@@ -93,12 +101,30 @@ a{
     background-color: #FFF;
 }
 
-.subject {
-  font-size: 12pt;
-  margin-bottom:4px;
+.status-message {
+    padding-top: 1vh;
 }
 
-.room {
-  font-size: 10pt;
-  font-style: italic;
+.current-modules{
+    padding-top: 1vh;
+}
+
+.current-modules td{
+    display: inline;
+}
+
+.bottom-half {
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-bottom: 10vh;
+}
+
+.select-form {
+    float: left;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.select-form select{
+    width: 30vh;
 }
