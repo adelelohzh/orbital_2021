@@ -1,11 +1,11 @@
 #myNUS
 
-Login system working.
-Timetable system working.
-  Current features:
-    -Search for modules by module code
-    -Add and delete classes from timetable
-  Additional features to be added to timetable:
-    -Color coding of modules
-    -Handling of clashing timings
-    -Other minor optimizations/bug fixing
+Login system working. <br />
+Timetable system working. <br />
+  Current features: <br />
+    -Search for modules by module code <br />
+    -Add and delete classes from timetable <br />
+  Additional features to be added to timetable: <br />
+    -Color coding of modules <br />
+    -Handling of clashing timings <br />
+    -Other minor optimizations/bug fixing <br />
