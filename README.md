@@ -10,3 +10,15 @@ Timetable system working.
     * -Color coding of modules <br />
     * -Handling of clashing timings <br />
     * -Other minor optimizations/bug fixing <br />
+
+  To-Do List system working.
+  * Current features: <br />
+    * -Adding of different lists <br />
+    * -Adding tasks into a certain list <br />
+    * -Editing tasks to change task name or add deadline <br />
+    * -Clearing of tasks <br />
+    * -Deleting of list <br />
+  * Additional features to be added to todo-list: <br />
+    * -Sync to homepage for reminders <br />
+    * -Tidying up css part <br />
+    * -Other minor optimizations/bug fixing <br />
