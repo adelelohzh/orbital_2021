@@ -33,7 +33,7 @@
                     <li class = "nostyle inlineblock"><a href='../Main/Main.php' class = "nodeco blockdisplay">Home</a></li>
                     <li class = "nostyle inlineblock"><a href='../Timetable/Timetable.php' class = "nodeco blockdisplay">Timetable</a></li>
                     <li class = "nostyle inlineblock"><a href='#' class = "nodeco blockdisplay">To-Do List</a></li>
-                    <li class = "nostyle inlineblock"><a href='#' class = "nodeco blockdisplay">Shuttle Bus</a></li>
+                    <li class = "nostyle inlineblock"><a href='../Shuttle/Shuttle.php' class = "nodeco blockdisplay">Shuttle Bus</a></li>
                     <li class = "nostyle inlineblock"><a href='../Login_Signup/includes/logout.inc.php' class = "nodeco blockdisplay">Logout</a></li>
                 </ul>
         <?php } ?>       

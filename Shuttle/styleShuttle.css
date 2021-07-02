@@ -70,61 +70,39 @@ a{
     display:block;
 }
 
-/* Specific to Timetable */
-.timetable{
-    padding-left: 10vh;
-    padding-right: 10vh;
-    padding-top: 5vh;
-    width: 100%;
+.bold {
+    font-weight: bold;
 }
 
-.timetable thead{
-  text-align: left;
-  color: #000;
+.fontsize20 {
+    font-size: 20px;
 }
 
-.timetable td{
-  border: 1px solid black;
-  padding: 6px;
-  text-align: center;
-  height: 10vh;
-  width: 10vh;
-}
-.timetable tbody tr td:first-child {
-  width: 10%;
-  background-color: #FFF;
-  font-weight: bold;
-  border-color: #EF7C00;
+/* Specific to shuttle */
+.shuttle{
+    margin: 15vh 75vh;
+    padding: 5vh;
+    border: solid 2px #EF7C00;
+    border-radius: 15px;
+    background-color: white;
 }
 
-.timetable tbody tr td:nth-child(even){
-    background-color: #FFF;
+.td1{
+    border: solid 1px #EF7C00;
+    width: 20vh;
+    font-weight: bold;
+    background-color: #eee;
 }
 
-.status-message {
-    padding-top: 1vh;
+.td2{
+    border: solid 1px black;
+    width: 15vh;
+    background-color: #eee;
+
 }
 
-.current-modules{
-    padding-top: 1vh;
-}
-
-.current-modules td{
-    display: inline;
-}
-
-.bottom-half {
-    padding-left: 10vh;
-    padding-right: 10vh;
-    padding-bottom: 10vh;
-}
-
-.select-form {
-    float: left;
-    padding-top: 5px;
-    padding-right: 10px;
-}
-
-.select-form select{
-    width: 30vh;
+.td3{
+    border: solid 1px black;
+    width: 15vh;
+    background-color: #eee;
 }
