@@ -1,6 +1,10 @@
 #myNUS
 
-We used XAMPP w Apache & MySQL for this project. <br /> <br />
+IMPORTANT: <br />
+We used XAMPP w Apache & MySQL for this project. <br /> 
+To test out the system, please download XAMPP, place our files in XAMPP/htdocs/.. and run initdb.php, clicking on the 'Initialize Database' button to create the required database. <br /> <br />
+
+
 Login system working. <br />
 Timetable system working.
   * Current features: <br />
@@ -11,7 +15,7 @@ Timetable system working.
     * -Handling of clashing timings <br />
     * -Other minor optimizations/bug fixing <br />
 
-  To-Do List system working.
+To-Do List system working.
   * Current features: <br />
     * -Adding of different lists <br />
     * -Adding tasks into a certain list <br />
@@ -22,3 +26,8 @@ Timetable system working.
     * -Sync to homepage for reminders <br />
     * -Tidying up css part <br />
     * -Other minor optimizations/bug fixing <br />
+
+Shuttle Bus system working.
+  * Current features: <br />
+    * -Searching for desired bus stop <br />
+    * -Viewing arrival timings for next two subsequent buses per bus service at desired stop <br />
