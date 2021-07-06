@@ -1,6 +1,10 @@
 #myNUS
 
-We used XAMPP w Apache & MySQL for this project. <br /> <br />
+IMPORTANT:
+We used XAMPP w Apache & MySQL for this project. <br /> 
+To test out the system, please download XAMPP, and run initdb.php in the root folder, clicking on the 'Initialize Database' button to create the required database. <br /> <br />
+
+
 Login system working. <br />
 Timetable system working.
   * Current features: <br />
