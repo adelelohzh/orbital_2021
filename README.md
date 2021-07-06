@@ -2,7 +2,7 @@
 
 IMPORTANT:
 We used XAMPP w Apache & MySQL for this project. <br /> 
-To test out the system, please download XAMPP, and run initdb.php in the root folder, clicking on the 'Initialize Database' button to create the required database. <br /> <br />
+To test out the system, please download XAMPP, place our files in XAMPP/htdocs/.. and run initdb.php, clicking on the 'Initialize Database' button to create the required database. <br /> <br />
 
 
 Login system working. <br />
