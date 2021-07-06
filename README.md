@@ -15,7 +15,7 @@ Timetable system working.
     * -Handling of clashing timings <br />
     * -Other minor optimizations/bug fixing <br />
 
-  To-Do List system working.
+To-Do List system working.
   * Current features: <br />
     * -Adding of different lists <br />
     * -Adding tasks into a certain list <br />
@@ -26,3 +26,8 @@ Timetable system working.
     * -Sync to homepage for reminders <br />
     * -Tidying up css part <br />
     * -Other minor optimizations/bug fixing <br />
+
+Shuttle Bus system working.
+  * Current features: <br />
+    * -Searching for desired bus stop <br />
+    * -Viewing arrival timings for next two subsequent buses per bus service at desired stop <br />
