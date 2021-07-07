@@ -1,6 +1,6 @@
 <?php
 
-    require('includes/database_connection.php');
+    require('database_connection.php');
 
     $userid = $_SESSION['useruid'];
 
@@ -33,14 +33,14 @@
                 </ul>
         <?php } else { ?>
                 <ul class = "header-left">
-                    <li class = "nostyle inlineblock leftfloat centered"><a href='#' class = "nodeco mylogofont blockdisplay">my</a></li>
+                    <li class = "nostyle inlineblock leftfloat centered"><a href='../Main/Main.php' class = "nodeco mylogofont blockdisplay">my</a></li>
                     <li class = "nostyle inlineblock leftfloat centered"><a href='../Main/Main.php' class = "nodeco nuslogofont blockdisplay">NUS</a></li>
                 </ul>
                 <ul class = "header-right">
-                    <li class = "nostyle inlineblock"><a href='#' class = "nodeco blockdisplay">Home</a></li>
+                    <li class = "nostyle inlineblock"><a href='../Main/Main.php' class = "nodeco blockdisplay">Home</a></li>
                     <li class = "nostyle inlineblock"><a href='../Timetable/Timetable.php' class = "nodeco blockdisplay">Timetable</a></li>
-                    <li class = "nostyle inlineblock"><a href='#' class = "nodeco blockdisplay">To-Do List</a></li>
-                    <li class = "nostyle inlineblock"><a href='#' class = "nodeco blockdisplay">Shuttle Bus</a></li>
+                    <li class = "nostyle inlineblock"><a href='../ToDo_List/todolist.php' class = "nodeco blockdisplay">To-Do List</a></li>
+                    <li class = "nostyle inlineblock"><a href='../Shuttle/Shuttle.php' class = "nodeco blockdisplay">Shuttle Bus</a></li>
                     <li class = "nostyle inlineblock"><a href='../Login_Signup/includes/logout.inc.php' class = "nodeco blockdisplay">Logout</a></li>
                 </ul>
         <?php } ?>       
@@ -137,7 +137,7 @@
         function loadTasks() {
             $.ajax({ 
                     type: "POST", 
-                    url: "includes/show-task.php", 
+                    url: "show-task.php", 
                     data: {currentListId : currentListId}, 
                     success: function(data) { 
                         $("#todo-container").html(data);
@@ -150,7 +150,7 @@
         $('.task-checkbox').click(function(){
             const taskId = $(this).attr('id');
 
-            $.post("includes/update.php",
+            $.post("update.php",
                 {
                     taskId: taskId
                 }
@@ -159,7 +159,7 @@
         });
 
         $('.btn-task').click(function(){
-            $.post("includes/add.php", 
+            $.post("add.php", 
             {
                 listId: currentListId
             })
@@ -167,7 +167,7 @@
 
         $('.btn-clear').click(function(){
 
-            $.post("includes/delete.php",
+            $.post("delete.php",
             {
                 id: 100
             },

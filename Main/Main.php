@@ -27,18 +27,14 @@
         ?>
 
         <div class = "main-left">
-            <?php echo "<p class = 'fontsset1'>Hello there, " . $_SESSION["usersuid"] . "</p>"; ?>               
+            <?php echo "<p class = 'fontsset2'>Hello there, " . $_SESSION["useruid"] . "</p>"; ?>               
         </div>
 
         <div class = "main-right">
-            <p class="fontsset1">What's due soon?</p>
+            <p class="fontsset1"></p>
             <div class="dashboard">
-                <ul>
-                    <li><a href="#">To be linked with to-do list</a></li>
-                    <li><a href="#">To be linked with to-do list</a></li>
-                    <li><a href="#">To be linked with to-do list</a></li>
-                    <li><a href="#">To be linked with to-do list</a></li>
-                    <li><a href="#">To be linked with to-do list</a></li>
+            <h1> What's due soon? </h1>
+                <ul id = "upcoming-tasks">
                 </ul>
             </div>
         </div>
@@ -51,3 +47,24 @@
 
     </body>
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+    $(document).ready(function() {  
+
+        function loadTasks() {
+            $.ajax({ 
+                    type: "POST", 
+                    url: "retrieve.php", 
+                    success: function(data) { 
+                        $('#upcoming-tasks').html(data);
+                    } 
+            });
+        }
+
+        loadTasks();
+    });
+
+</script>
