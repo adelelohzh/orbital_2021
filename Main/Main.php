@@ -2,7 +2,7 @@
     <html>
         <title>myNUS</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styleMain.css">
+        <link rel="stylesheet" href="styleMain2.css">
         <style>
             <?php include '../Header/styleHeader.css'; ?>
         </style>
@@ -27,16 +27,30 @@
         ?>
 
         <div class = "main-left">
-            <?php echo "<p class = 'fontsset2'>Hello there, " . $_SESSION["useruid"] . "</p>"; ?>               
+            <?php echo "<p class = 'fontsset2'>Hello there, " . $_SESSION["useruid"] . "</p>"; ?>   
         </div>
 
         <div class = "main-right">
             <p class="fontsset1"></p>
-            <div class="dashboard">
-            <h1> What's due soon? </h1>
-                <ul id = "upcoming-tasks">
-                </ul>
-            </div>
+                <div class="dashboard">
+                <h1> What's due soon? </h1>
+                    <!-- <div class="selectMax">
+                        <select id = "maximumTasks" onChange = 'yes();'>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="7">7</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div> -->
+                    <ul id = "upcoming-tasks">
+                    </ul>
+                </div>
+
+                <div class="class-reminder">
+                    <h1><a href="../Timetable/Timetable.php">Upcoming classes</a></h1>
+                    <div class = "upcoming-class" id = "upcoming-class">
+                    </div>
+                </div>
         </div>
 
         <?php
@@ -54,6 +68,7 @@
 
     $(document).ready(function() {  
 
+
         function loadTasks() {
             $.ajax({ 
                     type: "POST", 
@@ -65,6 +80,27 @@
         }
 
         loadTasks();
+
+        function loadClass() {
+            $.ajax({ 
+                    type: "POST", 
+                    url: "retrieve-class.php", 
+                    success: function(data) { 
+                        $('#upcoming-class').html(data);
+                    } 
+            });
+        }
+
+        loadClass(); 
+
+        // function getMax() {
+        //     alert('yes');
+        //     var max = document.getElementById("maximumTasks").value;
+        // }
+
+        // function yes() {
+        //     alert('yes');
+        // }
     });
 
 </script>
