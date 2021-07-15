@@ -1,5 +1,7 @@
 <?php 
-    require('database_connection.php');
+    include_once 'database_connection.php';    
+    session_start();
+
     $useruid = $_SESSION["useruid"];
 
     if (isset($_POST ['currentListId'])) {
@@ -21,19 +23,36 @@
                 <div class="tasks" data-list-tasks>
                     <?php while($row = $todoTasks->fetch_assoc()) { ?>
                     <div class="task">
-                        <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>
+                        <div class = "taskContent">
+                        <input type="checkbox" class = 'task-checkbox' id = "<?php echo $row['taskId']?>">
                         <label for = "<?php echo $row['taskId']?>" class = "name">
                             <span class = "custom-checkbox"></span>
                             <?php echo $row['taskName']?>
                         </label>
-                        <label class = "deadline">
-                                <?php if ($row['taskDeadline'] !== null) {
-                                    echo $row['taskDeadline'];
-                                } ?>  
-                        </label>
                         <button class= "option-btn">
                             <i class = "material-icons" id = "<?php echo $row['taskId']?>">more_horiz</i>
                         </button>   
+                                <?php if ($row['taskDeadline'] !== null) {
+                                        $todayDate = date("Y-m-d");
+                                        if ($row['taskDeadline'] == $todayDate) 
+                                        { ?>
+                                        <label class = "deadline" style = "color: red; font-size: 15px;">DUE: TODAY</label>
+                                        <?php } 
+                                        else if ($row['taskDeadline'] < $todayDate) // overdue
+                                        { ?>
+                                        <label class = "deadline" style = "color: red;">OVERDUE: <?php echo $row['taskDeadline'];?></label>
+                                        <?php } 
+                                        else // not due yet
+                                        { ?>
+                                        <label class = "deadline">DUE: <?php echo $row['taskDeadline'];?></label>
+                                        <?php } 
+                                    
+                                } else { 
+                                ?>
+                                    <label class = "nulldeadline">&nbsp</label>
+                                <?php } ?>  
+                        </div>
+    
                         <div class="popout" id = "<?php echo $row['taskId']?>editorPopout">
                             
                             <div class="popout-content" >
@@ -45,41 +64,46 @@
 
                                 <div class = "edit-task">
                                     <form action = "" method = "POST" name = "editForm">
-                                        <label> 
-                                            Task Name: 
-                                        </label>
-                                        <input 
-                                            type = "text"
-                                            name = "newName"
-                                            id = "<?php echo $row['taskId']?>editName"
-                                            class = "edit task-name"
-                                            placeholder= "task name"
-                                        />
-                                
-                                        <label> 
-                                            Deadline: 
-                                        </label>
-                                        <input 
-                                            type = "date"
-                                            name = "newDeadline"
-                                            id = "<?php echo $row['taskId']?>editDeadline"
-                                            class = "edit task-deadline"
-                                            placeholder= "yyyy/mm/dd" 
-                                        /> 
-                                        <button class = "save-btn"  id = "<?php echo $row['taskId']?>"> Save </button>
+                                        <div class = "nameInput">
+                                            <label> 
+                                                Task Name: 
+                                            </label>
+                                            <input 
+                                                type = "text"
+                                                name = "newName"
+                                                id = "<?php echo $row['taskId']?>editName"
+                                                class = "edit task-name"
+                                                placeholder= "new task name"
+                                            />
+                                        </div>
+                                        <div class = "dateInput">
+                                            <label> 
+                                                Deadline: 
+                                            </label>
+                                            <input 
+                                                type = "date"
+                                                name = "newDeadline"
+                                                id = "<?php echo $row['taskId']?>editDeadline"
+                                                class = "edit task-deadline"
+                                                placeholder= "yyyy/mm/dd" 
+                                            /> 
+                                        </div>
+                                        <div class = "submitInput">
+                                            <button class = "save-btn" type = "button" id = "<?php echo $row['taskId']?>"> Save </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                     <?php } ?>
                 </div>
                 <div class="new-task-creator">
-                    <form action = "add.php" method = "POST" autocomplete = "off">
+                    <form action = "includes/add.php" method = "POST" autocomplete = "off">
                         <?php if (isset($_GET['mess']) && $_GET['mess'] == 'error') { ?>
                             <input type="text"
                             name = "taskname"
-                            class = "new task"
+                            class = "new addtask"
                             data-new-task-input
                             placeholder="This is a required field"
                             aria-label="New Task Name"
@@ -89,7 +113,7 @@
                         <?php } else { ?>
                             <input type="text"
                             name = "taskname"
-                            class = "new task"
+                            class = "new addtask"
                             data-new-task-input
                             placeholder="New Task Name"
                             aria-label="New Task Name"
@@ -104,7 +128,7 @@
                     <button class = "btn-clear" data-clear-list>Clear Completed Tasks</button>
                     <button class = "btn-delete" data-delete-list>Delete List</button>
                 </div>
-        </div>
+            </div>
 
 
 <?php 
@@ -146,24 +170,23 @@
 
     errorPopoutBox = document.getElementById("errorpopout")
 
-    errorPopoutBox.style.display = 'none'
 
     $(document).ready(function() {
 
         $('.task-checkbox').click(function(){
             const taskId = $(this).attr('id');
 
-            $.post("update.php",
-                {
-                    taskId: taskId
-                }
-            ) 
+            $.ajax({ 
+                type: "POST", 
+                url: "includes/update.php", 
+                data: {taskId : taskId}
+            }); 
 
         });
 
         $('.btn-clear').click(function(){
 
-            $.post("delete.php",
+            $.post("includes/delete.php",
             {
                 id: 100
             },
@@ -176,7 +199,7 @@
             const taskId = $(this).attr('id');
             const popoutId = taskId.toString() + 'editorPopout'
             var popoutBox = document.getElementById(popoutId)
-            popoutBox.style.display = 'flex'
+            popoutBox.style.display = 'flex';
         });
 
         $('.cancel-btn').click(function() {
@@ -192,24 +215,37 @@
             const deadlineId = taskId.toString() + 'editDeadline';
             const newName = document.getElementById(nameId).value;
             const newDeadline = document.getElementById(deadlineId).value;
+            
+            const popoutId = taskId.toString() + 'editorPopout'
+            var popoutBox = document.getElementById(popoutId)
+            
 
             let array = [taskId, newName, newDeadline]
 
             $.ajax({ 
                 type: "POST", 
-                url: "edit.php", 
+                url: "includes/edit.php", 
                 data: {array : array}, 
                 success: function(message) { 
-                    if (message == 'missing-value-error') 
+                    if (message === 'missing-value-error') 
                     {
-                        alert("missing values");
+                        errorPopoutBox.style.display = ''
+                    }
+                    else if (message === 'invalid-date-error')
+                    {
+                        invalidErrorPopoutBox.style.display = ''
+                    }
+                    else if (message === 'success')
+                    {
+                        popoutBox.style.display = 'none'
+                        window.location.reload();
                     }
                 }
             });
         }); 
 
         $('.btn-delete').click(function(){
-            $.post("deleteList.php",
+            $.post("includes/deleteList.php",
             {
                 listId: currentListId
             },

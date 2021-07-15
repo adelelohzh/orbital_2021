@@ -1,13 +1,5 @@
 <?php
-
-    require('database_connection.php');
-
-    $userid = $_SESSION['useruid'];
-
-    $getquery = "SELECT * FROM taskName
-                ORDER BY taskId DESC";
-
-    $alltasks = mysqli_query($conn, $getquery);
+  include_once 'includes/database_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,37 +7,25 @@
         <title>myNUS</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../ToDo_List/styleTodoList.css">
-        <!-- <script src="scriptTodoList.js"></script> -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- <script src = 'scriptToDoList.js'></script> -->
         <style>
              <?php include '../Header/styleHeader.css'; ?>
         </style>
 
     <body class = "full grey">
-     
-    <!-- Header -->
-    <div class = "header">
-        <?php if (!isset($_SESSION["useruid"])) { ?>
-                <ul class = "header-left">
-                    <li class = "nostyle inlineblock leftfloat centered"><a href='../Main/Main.php' class = "nodeco mylogofont blockdisplay">my</a></li>
-                    <li class = "nostyle inlineblock leftfloat centered"><a href='../Main/Main.php' class = "nodeco nuslogofont blockdisplay">NUS</a></li>
-                </ul>
-        <?php } else { ?>
-                <ul class = "header-left">
-                    <li class = "nostyle inlineblock leftfloat centered"><a href='../Main/Main.php' class = "nodeco mylogofont blockdisplay">my</a></li>
-                    <li class = "nostyle inlineblock leftfloat centered"><a href='../Main/Main.php' class = "nodeco nuslogofont blockdisplay">NUS</a></li>
-                </ul>
-                <ul class = "header-right">
-                    <li class = "nostyle inlineblock"><a href='../Main/Main.php' class = "nodeco blockdisplay">Home</a></li>
-                    <li class = "nostyle inlineblock"><a href='../Timetable/Timetable.php' class = "nodeco blockdisplay">Timetable</a></li>
-                    <li class = "nostyle inlineblock"><a href='../ToDo_List/todolist.php' class = "nodeco blockdisplay">To-Do List</a></li>
-                    <li class = "nostyle inlineblock"><a href='../Shuttle/Shuttle.php' class = "nodeco blockdisplay">Shuttle Bus</a></li>
-                    <li class = "nostyle inlineblock"><a href='../Login_Signup/includes/logout.inc.php' class = "nodeco blockdisplay">Logout</a></li>
-                </ul>
-        <?php } ?>       
-    </div>
-    <!-- End of header -->
+
+    <?php
+            include_once '../Header/Header.php';          
+            if (!isset($_SESSION["useruid"])) {
+                header("Location: ../Main/Main.php");
+            } else { 
+                $userid = $_SESSION['useruid'];
+
+                $getquery = "SELECT * FROM taskName
+                ORDER BY taskId DESC";
+
+                $alltasks = mysqli_query($conn, $getquery);
+    ?>
     
     <div class = "to-do-body">
         <h1 class = "title">To-Do List</h1>
@@ -63,7 +43,7 @@
                 <?php } ?>
             </ul>
 
-            <form action="addList.php" method = "POST" autocomplete = "off">
+            <form action="includes/addList.php" method = "POST" autocomplete = "off">
                 <?php if (isset($_GET['mess']) && $_GET['mess'] == 'error1') { ?>
                     <input type="text"
                     name = "listName"
@@ -87,7 +67,6 @@
         </div>
 
         <div class="todo-list">
-                
                 <div id = "todo-container">
                 </div>
             
@@ -98,6 +77,16 @@
                 <h1 class = "task-title">Error</h1>
                 <div class="errorMessage">
                     <p>Please enter a value!</p>
+                </div>
+                <button class = "close-btn"> Close </button>
+            </div>
+        </div>
+
+        <div class="errorPopout" id = "invalidDateErrorpopout">
+            <div class="errorPopout-content" >
+                <h1 class = "task-title">Error</h1>
+                <div class="invalidErrorMessage">
+                    <p>Please enter a valid date (YYYY-MM-DD)!</p>
                 </div>
                 <button class = "close-btn"> Close </button>
             </div>
@@ -119,6 +108,9 @@
             </div> -->
         </template>
     </body>
+    <?php 
+        }
+    ?>
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -130,6 +122,9 @@
 
     var errorPopoutBox = document.getElementById("errorpopout")
 
+    var invalidErrorPopoutBox = document.getElementById("invalidDateErrorpopout")
+    
+    invalidErrorPopoutBox.style.display = 'none'
     errorPopoutBox.style.display = 'none'
 
     $(document).ready(function() {
@@ -137,7 +132,7 @@
         function loadTasks() {
             $.ajax({ 
                     type: "POST", 
-                    url: "show-task.php", 
+                    url: "includes/show-task.php", 
                     data: {currentListId : currentListId}, 
                     success: function(data) { 
                         $("#todo-container").html(data);
@@ -147,19 +142,8 @@
 
         loadTasks();
 
-        $('.task-checkbox').click(function(){
-            const taskId = $(this).attr('id');
-
-            $.post("update.php",
-                {
-                    taskId: taskId
-                }
-            )
-
-        });
-
         $('.btn-task').click(function(){
-            $.post("add.php", 
+            $.post("includes/add.php", 
             {
                 listId: currentListId
             })
@@ -167,7 +151,7 @@
 
         $('.btn-clear').click(function(){
 
-            $.post("delete.php",
+            $.post("includes/delete.php",
             {
                 id: 100
             },
@@ -190,27 +174,10 @@
             popoutBox.style.display = 'none'
         });
 
-        $('.save-btn').click(function() {
-            const taskId = $(this).attr('id');
-            const nameId = taskId.toString() + 'editName';
-            const deadlineId = taskId.toString() + 'editDeadline';
-            const newName = document.getElementById(nameId).value;
-            const newDeadline = document.getElementById(deadlineId).value;
-
-            let array = [taskId, newName, newDeadline]
-
-            $.ajax({ 
-                type: "POST", 
-                url: "includes/edit.php", 
-                data: {array : array}, 
-                success: function(message) { 
-                    if (message == 'missing-value-error') 
-                    {
-                        alert("missing values");
-                    }
-                }
-            });
-        }); 
+        $('.close-btn').click(function() {
+            errorPopoutBox.style.display = 'none'
+            invalidErrorPopoutBox.style.display = 'none'
+        });
 
         $('.listElement').click(function() {
             const listId = $(this).attr('id');

@@ -2,7 +2,8 @@
 
 if (isset($_POST['listName'])) {
 
-    require('database_connection.php');
+    include_once '../includes/database_connection.php';
+    session_start();
 
     $userUID = $_SESSION["useruid"];
     
@@ -10,7 +11,7 @@ if (isset($_POST['listName'])) {
 
     if (empty($name))
     {
-        header("Location: ../ToDo_List/todolist.php?mess=error1");
+        header("Location: ../todolist.php?mess=error1");
     } 
     else
     {
@@ -25,12 +26,12 @@ if (isset($_POST['listName'])) {
         }
         else
         {
-            header("Location: ../ToDo_List/todolist.php");
+            header("Location: ../todolist.php");
         }
     }
 } 
 else
 {
-    header("Location: ../ToDo_List/todolist.php");
+    header("Location: ../todolist.php");
 }
 ?>

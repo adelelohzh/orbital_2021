@@ -2,8 +2,8 @@
 
 if (isset($_POST['taskname'])) {
 
-    require('database_connection.php');
-
+    include_once 'database_connection.php';
+    session_start();
     $userId = $_SESSION['useruid'];
 
     
@@ -11,7 +11,7 @@ if (isset($_POST['taskname'])) {
 
     if (empty($name))
     {
-        header("Location: ../ToDo_List/todolist.php?mess=error");
+        header("Location: ../todolist.php?mess=error");
     } 
     else
     {
@@ -28,7 +28,7 @@ if (isset($_POST['taskname'])) {
         }
         else
         {
-            header("Location: ../ToDo_List/todolist.php");
+            header("Location: ../todolist.php");
             
         }
     }

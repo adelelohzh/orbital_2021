@@ -2,12 +2,11 @@
 
 if (isset($_POST['taskId'])) {
 
-    include('database_connection.php');
+    include_once 'database_connection.php';
+    session_start();
 
-    $userId = $_SESSION['userid'];
+    $useruid = $_SESSION["useruid"];    
 
-    echo ("hello");
-    
     $id = $_POST['taskId'];
 
     

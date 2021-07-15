@@ -2,7 +2,8 @@
 
 if (isset($_POST['id'])) {
 
-    include('database_connection.php');
+    include_once 'database_connection.php';
+    session_start();
     
     $id = $_POST['id'];
     
