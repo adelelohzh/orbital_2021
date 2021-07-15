@@ -81,7 +81,7 @@
         function loadTasks() {
             $.ajax({ 
                     type: "POST", 
-                    url: "retrieve.php", 
+                    url: "includes/retrieve.php", 
                     data: {max : document.getElementById("maximumTasks").value}, 
                     success: function(data) { 
                         $('#upcoming-tasks').html(data);
@@ -94,7 +94,7 @@
         function loadClass() {
             $.ajax({ 
                     type: "POST", 
-                    url: "retrieve-class.php", 
+                    url: "includes/retrieve-class.php", 
                     success: function(data) { 
                         $('#upcoming-class').html(data);
                     } 
