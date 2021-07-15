@@ -73,26 +73,67 @@ a{
 
 /* Specific to Signup */
 .title{
-    font-size: 32px;
+    font-size: 50px;
     font-weight: bold;
 }
 
 .form{
     height: 100%;
     text-align: center;
-    padding-top: 8vh;
+    padding: 8vh 0;
+    margin: 50px 250px;
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: 7px 7px grey;
 }
 
 .form input{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5px;
-    padding: 5px;
+    margin-bottom: 10px;
+    padding: 8px;
     display: block;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px grey;
+}
+
+.form p
+{
+    display: block;
+    margin: 20px 0;
+}
+
+.form a
+{
+    color: blue;
+}
+
+.form a:hover
+{
+    text-decoration: underline;
+}
+
+.form a:visited
+{
+    color: purple;
 }
 
 .form button{
     margin-top: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background: none;
+    padding: 8px 18px;
+    box-shadow: 2px 1px slategrey;
+    cursor: pointer;
+
+    transition-duration: 200ms;
+}
+
+.form button:hover
+{
+    background: black;
+    color: white;
 }
 
 .error-message{
@@ -107,3 +148,6 @@ a{
     margin-right: auto;
     font-size: 16px;
 }
+
+
+

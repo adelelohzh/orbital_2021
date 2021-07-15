@@ -61,7 +61,7 @@ if (isset($_POST['array'])) {
 } 
 else
 {
-    echo 'ffferror';
+    echo 'error';
 }
 
 ?>

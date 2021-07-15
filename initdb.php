@@ -54,6 +54,21 @@ $createschedules = "CREATE TABLE schedules (
     endTime int(11) NOT NULL
 );";
 
+$createtasklist = "CREATE TABLE taskList (
+	  listId int(255) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	  userId varchar(255) NOT NULL,
+	  listName varchar(255) NOT NULL
+);";
+
+$createtask = "CREATE TABLE tasks (
+    taskId int(255) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    userId varchar(255) NOT NULL,
+    listId int(255) NOT NULL,
+    taskName varchar(128) NOT NULL,
+    taskDeadline date,
+    taskChecked int(1) NOT NULL	DEFAULT 0
+);";
+
 
 if ($conn2->query($createusers) === TRUE) {
     echo "Table users created successfully <br>";
@@ -66,6 +81,19 @@ if ($conn2->query($createschedules) === TRUE) {
 } else {
     echo "Error creating table: " . $conn2->error . "<br>";
 }
+
+if ($conn2->query($createtasklist) === TRUE) {
+  echo "Table tasklist created successfully <br>";
+} else {
+  echo "Error creating table: " . $conn2->error . "<br>";
+}
+
+if ($conn2->query($createtask) === TRUE) {
+  echo "Table tasks created successfully <br>";
+} else {
+  echo "Error creating table: " . $conn2->error . "<br>";
+}
+
 /*
 mysqli_query($conn2, $createusers);
 mysqli_query($conn2, $createschedules);

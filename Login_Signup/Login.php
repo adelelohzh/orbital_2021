@@ -12,6 +12,7 @@
     
     <div class="form">
         <p class="title fontsset1">Log In</p>
+        <p class = "member"> Not a member? <a href = 'Signup.php'>Sign up</a></p>
         <form action="includes/login.inc.php" method="post">
             <input type="text" name="uid" placeholder="Username/Email">
             <input type="password" name="pwd" placeholder="Password">

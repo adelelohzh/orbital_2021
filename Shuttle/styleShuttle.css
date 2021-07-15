@@ -79,7 +79,7 @@ a{
 }
 
 /* Specific to shuttle */
-.shuttle{
+/* .shuttle{
     margin: 15vh 75vh;
     padding: 5vh;
     border: solid 2px #EF7C00;
@@ -105,4 +105,77 @@ a{
     border: solid 1px black;
     width: 15vh;
     background-color: #eee;
+} */
+
+.shuttle
+{
+    margin: 7vh 10vh;
+    padding: 5vh;
+    border: solid 2px #EF7C00;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.select-form
+{
+    margin-left: 30%;
+}
+
+.select-form select
+{
+    width:50%;
+}
+
+.select-form input
+{
+
+    border: 1px solid black;
+    border-radius: 15px;
+    background: none;
+    padding: 4px 8px;
+    box-shadow: 2px 1px slategrey;
+    cursor: pointer;
+
+    transition-duration: 200ms;
+}
+
+.select-form input:hover
+{
+    background: black;
+    color: white;
+}
+
+.table
+{
+    margin-left: 30%;
+}
+
+.td1{
+    border: solid 1px #EF7C00;
+    width: 20vh;
+    height: 5vh;
+    text-align: center;
+    font-weight: bold;
+    background-color: #eee;
+}
+
+.td2{
+    border: solid 1px black;
+    width: 15vh;
+    text-align: center;
+    background-color: #eee;
+}
+
+
+.td3{
+    border: solid 1px black;
+    width: 15vh;
+    text-align: center;
+    background-color: #eee;
+}
+
+.busstoptitle
+{
+    text-decoration: underline;
+    font-weight: bold;
 }

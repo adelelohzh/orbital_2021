@@ -2,7 +2,7 @@
     <html>
         <title>myNUS</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styleMain2.css">
+        <link rel="stylesheet" href="styleMain.css">
         <style>
             <?php include '../Header/styleHeader.css'; ?>
         </style>
@@ -33,15 +33,17 @@
         <div class = "main-right">
             <p class="fontsset1"></p>
                 <div class="dashboard">
-                <h1> What's due soon? </h1>
-                    <!-- <div class="selectMax">
-                        <select id = "maximumTasks" onChange = 'yes();'>
+                <div class = "right-header">
+                    <h1> What's due soon? </h1>
+                    <div class="selectMax">
+                        <select id = "maximumTasks">
                             <option value="3">3</option>
                             <option value="5">5</option>
                             <option value="7">7</option>
                             <option value="10">10</option>
                         </select>
-                    </div> -->
+                    </div>
+                </div>
                     <ul id = "upcoming-tasks">
                     </ul>
                 </div>
@@ -68,11 +70,19 @@
 
     $(document).ready(function() {  
 
+        const localStorageKeyCurrentMaxValue = 'current.max.value' 
+        currentMax = localStorage.getItem(localStorageKeyCurrentMaxValue);
+        if (currentMax == null || currentMax == "0")
+        {
+            currentMax = 3;
+        }
+        $('#maximumTasks').val(currentMax);
 
         function loadTasks() {
             $.ajax({ 
                     type: "POST", 
                     url: "retrieve.php", 
+                    data: {max : document.getElementById("maximumTasks").value}, 
                     success: function(data) { 
                         $('#upcoming-tasks').html(data);
                     } 
@@ -93,14 +103,13 @@
 
         loadClass(); 
 
-        // function getMax() {
-        //     alert('yes');
-        //     var max = document.getElementById("maximumTasks").value;
-        // }
+        $('.selectMax').on("change", "#maximumTasks", function() {
+            var newMax = document.getElementById("maximumTasks").value;
+            localStorage.setItem(localStorageKeyCurrentMaxValue, newMax);
+            loadTasks();
+        });
 
-        // function yes() {
-        //     alert('yes');
-        // }
+        
     });
 
 </script>

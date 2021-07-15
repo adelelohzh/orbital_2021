@@ -84,13 +84,6 @@ a{
     left: 0%;
 }
 
-.header-left a 
-{
-    text-align: center;
-    vertical-align: center;
-    margin: 20px 0;
-}
-
 .header-right {
     margin: auto;
     position: absolute;

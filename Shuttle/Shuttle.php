@@ -9,6 +9,14 @@
 
     <body class = "full grey">
     <?php include_once '../Header/Header.php'; ?>
+
+    <?php
+            include_once '../Header/Header.php';          
+            if (!isset($_SESSION["useruid"])) {
+                header("Location: ../Main/Main.php");
+            } else { 
+    ?>
+
     <div class = "shuttle">
     <?php
         $auth = base64_encode('NUSnextbus:13dL?zY,3feWR^"T');
@@ -37,7 +45,7 @@
         </form>
 
         <?php if (isset($_GET['stop'])) { ?>
-        <p class = "fontsset1 fontsize20">Bus Stop: <?php echo $_GET['stop'] ?></p>
+        <p class = "busstoptitle fontsset1 fontsize20">Bus Stop: <?php echo $_GET['stop'] ?></p>
         <table class="table fontsset1">
             <thead><tr><td>Buses:</td></tr></thead>
             <tbody>
@@ -49,13 +57,30 @@
                 $dstopdata = json_decode($stopdata, true);
                 $shuttles = $dstopdata['ShuttleServiceResult']['shuttles'];
                 foreach($shuttles as $shuttle) {
-                    echo "<tr><td class='td1'>{$shuttle['name']}</td><td class='td2'>Next: {$shuttle['arrivalTime']}</td><td class='td3'>After: {$shuttle['nextArrivalTime']}</td></tr>";
-                }
-            ?>
+                    echo "<tr><td class='td1'>{$shuttle['name']}"
+                    ?>
+                    <?php 
+                        echo "</td><td class='td2'>Next: {$shuttle['arrivalTime']}";
+
+                    if ($shuttle['arrivalTime'] != '-')
+                    {
+                        echo " min";
+                    }
+                        echo "</td><td class='td3'>After: {$shuttle['nextArrivalTime']}";
+                    if ($shuttle['nextArrivalTime'] != '-')
+                    {
+                        echo " min";
+                    }
+                    echo "</td></tr>";
+                } ?>
+            
             </tbody>
         </table>
         <?php } ?>
-    </div>   
+    </div>
+        <?php
+            }
+        ?>   
     </body>
 
 </html>
