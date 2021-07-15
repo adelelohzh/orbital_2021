@@ -1,10 +1,4 @@
-<form action="initdb.php" method="post">
-    <input type="submit" name="initdb" value="Initialize Database" />
-</form>
-
 <?php
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['initdb'])) {
-//echo "hi";
 $dbServername = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
@@ -98,5 +92,5 @@ if ($conn2->query($createtask) === TRUE) {
 mysqli_query($conn2, $createusers);
 mysqli_query($conn2, $createschedules);
 */
-}
+
 ?>

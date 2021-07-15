@@ -1,5 +1,7 @@
 <?php
 
+include_once "initdb.php";
+
 $serverName = "localhost";
 $dBUsername = "root";
 $dBPassword = "";

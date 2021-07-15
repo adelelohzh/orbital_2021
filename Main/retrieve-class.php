@@ -1,10 +1,10 @@
 <?php 
     require('database_connection.php');
-    $useruid = $_SESSION["useruid"];
+    $userid = $_SESSION["userid"];
 
-    $user = $conn -> query("SELECT * FROM users where usersUid = '$useruid'");
-    $currUser = $user->fetch_assoc();
-    $userid = $currUser['usersid'];
+    // $user = $conn -> query("SELECT * FROM users where usersUid = '$useruid'");
+    // $currUser = $user->fetch_assoc();
+    // $userid = $currUser['usersId'];
 
     date_default_timezone_set('Singapore');
 
