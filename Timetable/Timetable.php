@@ -38,6 +38,34 @@
           }
         }
       }
+
+      //Creating color coding for modules
+
+      //Increases or decreases the brightness of a color by a percentage of the current brightness.
+      function adjustBrightness($hexCode, $adjustPercent) {
+        $hexCode = ltrim($hexCode, '#');
+        if (strlen($hexCode) == 3) {
+            $hexCode = $hexCode[0] . $hexCode[0] . $hexCode[1] . $hexCode[1] . $hexCode[2] . $hexCode[2];
+        }
+        $hexCode = array_map('hexdec', str_split($hexCode, 2));
+        foreach ($hexCode as & $color) {
+            $adjustableLimit = $adjustPercent < 0 ? $color : 255 - $color;
+            $adjustAmount = ceil($adjustableLimit * $adjustPercent);
+            $color = str_pad(dechex($color + $adjustAmount), 2, '0', STR_PAD_LEFT);
+        }
+        return '#' . implode($hexCode);
+      }
+
+      $temps = $modules;
+      $coloredModules = array();
+      //echo print_r($modules); 
+      foreach($temps as $temp) {
+        $rand = adjustBrightness(sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 0.7);
+        array_push($temp, $rand);
+        //echo print_r($temp);
+        array_push($coloredModules, $temp);
+      }
+      //echo print_r($coloredModules);
     ?>  
 
     <!-- Timetable -->
@@ -58,75 +86,105 @@
           <th>1700</th>  
         </tr>
       </thead>
+      
+      <?php
+      $status = 'false';
+      $color = 'white';
+      
+      /* Format of each table cell:
+      foreach($classes as $class) { 
+        if ($class['startTime'] <= 11600 && $class['endTime'] >= 11700) { 
+          $status = 'true'; 
+          foreach ($coloredModules as $coloredmodule) { 
+            if ($class['moduleCode'] == $coloredmodule[0]) {
+              $color= $coloredmodule[2];
+      }}}}
+      if ($status == 'true') {
+        foreach($classes as $class) { 
+          if($class['startTime'] <= 11600 && $class['endTime'] >= 11700) {
+            echo "<td style='background-color:".$color."'>".
+            $class['moduleCode'].' '.$class['classNo']."</td>";
+          }
+        }
+        $status = 'false';
+      } else {
+        echo "<td></td>";
+      }
+      */
 
-      <tbody>
-        <tr>
-          <td>Monday</td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 10800 && $class['endTime'] >= 10900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 10900 && $class['endTime'] >= 11000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11000 && $class['endTime'] >= 11100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11100 && $class['endTime'] >= 11200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11200 && $class['endTime'] >= 11300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11300 && $class['endTime'] >= 11400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11400 && $class['endTime'] >= 11500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11500 && $class['endTime'] >= 11600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11600 && $class['endTime'] >= 11700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 11700 && $class['endTime'] >= 11800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-        </tr>
-        <tr>
-          <td>Tuesday</td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 20800 && $class['endTime'] >= 20900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 20900 && $class['endTime'] >= 21000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21000 && $class['endTime'] >= 21100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21100 && $class['endTime'] >= 21200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21200 && $class['endTime'] >= 21300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21300 && $class['endTime'] >= 21400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21400 && $class['endTime'] >= 21500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21500 && $class['endTime'] >= 21600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21600 && $class['endTime'] >= 21700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 21700 && $class['endTime'] >= 21800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>   
-        </tr>
-        <tr>
-          <td>Wednesday</td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 30800 && $class['endTime'] >= 30900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 30900 && $class['endTime'] >= 31000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31000 && $class['endTime'] >= 31100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31100 && $class['endTime'] >= 31200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31200 && $class['endTime'] >= 31300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31300 && $class['endTime'] >= 31400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31400 && $class['endTime'] >= 31500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31500 && $class['endTime'] >= 31600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31600 && $class['endTime'] >= 31700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 31700 && $class['endTime'] >= 31800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>    
-        </tr>
-        <tr>
-          <td>Thursday</td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 40800 && $class['endTime'] >= 40900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 40900 && $class['endTime'] >= 41000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41000 && $class['endTime'] >= 41100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41100 && $class['endTime'] >= 41200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41200 && $class['endTime'] >= 41300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41300 && $class['endTime'] >= 41400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41400 && $class['endTime'] >= 41500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41500 && $class['endTime'] >= 41600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41600 && $class['endTime'] >= 41700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 41700 && $class['endTime'] >= 41800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>    
-        </tr>
-        <tr>
-          <td>Friday</td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 50800 && $class['endTime'] >= 50900) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 50900 && $class['endTime'] >= 51000) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51000 && $class['endTime'] >= 51100) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51100 && $class['endTime'] >= 51200) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51200 && $class['endTime'] >= 51300) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51300 && $class['endTime'] >= 51400) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51400 && $class['endTime'] >= 51500) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51500 && $class['endTime'] >= 51600) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51600 && $class['endTime'] >= 51700) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td>
-          <td> <?php foreach($classes as $class){ if($class['startTime'] <= 51700 && $class['endTime'] >= 51800) {echo $class['moduleCode'].' '.$class['classNo'];}}?></td> 
-        </tr>                            
-       </tbody>
-
+      //In one line:
+      //foreach($classes as $class) { if ($class['startTime'] <= 11600 && $class['endTime'] >= 11700) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11600 && $class['endTime'] >= 11700) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+      
+      echo "<tbody>";
+        echo "<tr>";
+          echo "<td>Monday</td>";
+          foreach($classes as $class) { if ($class['startTime'] <= 10800 && $class['endTime'] >= 10900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 10800 && $class['endTime'] >= 10900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 10900 && $class['endTime'] >= 11000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 10900 && $class['endTime'] >= 11000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11000 && $class['endTime'] >= 11100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11000 && $class['endTime'] >= 11100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11100 && $class['endTime'] >= 11200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11100 && $class['endTime'] >= 11200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11200 && $class['endTime'] >= 11300) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11200 && $class['endTime'] >= 11300) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11300 && $class['endTime'] >= 11400) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11300 && $class['endTime'] >= 11400) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11400 && $class['endTime'] >= 11500) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11400 && $class['endTime'] >= 11500) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11500 && $class['endTime'] >= 11600) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11500 && $class['endTime'] >= 11600) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11600 && $class['endTime'] >= 11700) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11600 && $class['endTime'] >= 11700) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 11700 && $class['endTime'] >= 11800) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11700 && $class['endTime'] >= 11800) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+        echo "</tr>";
+        
+        echo "<tr>";
+          echo "<td>Tuesday</td>";
+          foreach($classes as $class) { if ($class['startTime'] <= 20800 && $class['endTime'] >= 20900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 20800 && $class['endTime'] >= 20900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 20900 && $class['endTime'] >= 21000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 20900 && $class['endTime'] >= 21000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21000 && $class['endTime'] >= 21100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21000 && $class['endTime'] >= 21100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21100 && $class['endTime'] >= 21200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21100 && $class['endTime'] >= 21200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21200 && $class['endTime'] >= 21300) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21200 && $class['endTime'] >= 21300) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21300 && $class['endTime'] >= 21400) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21300 && $class['endTime'] >= 21400) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21400 && $class['endTime'] >= 21500) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21400 && $class['endTime'] >= 21500) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21500 && $class['endTime'] >= 21600) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21500 && $class['endTime'] >= 21600) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21600 && $class['endTime'] >= 21700) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21600 && $class['endTime'] >= 21700) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 21700 && $class['endTime'] >= 21800) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21700 && $class['endTime'] >= 21800) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}   
+        echo "</tr>";
+        echo "<tr>";
+          echo "<td>Wednesday</td>";
+          foreach($classes as $class) { if ($class['startTime'] <= 30800 && $class['endTime'] >= 30900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 30800 && $class['endTime'] >= 30900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 30900 && $class['endTime'] >= 31000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 30900 && $class['endTime'] >= 31000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31000 && $class['endTime'] >= 31100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31000 && $class['endTime'] >= 31100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31100 && $class['endTime'] >= 31200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31100 && $class['endTime'] >= 31200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31200 && $class['endTime'] >= 31300) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31200 && $class['endTime'] >= 31300) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31300 && $class['endTime'] >= 31400) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31300 && $class['endTime'] >= 31400) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31400 && $class['endTime'] >= 31500) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31400 && $class['endTime'] >= 31500) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31500 && $class['endTime'] >= 31600) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31500 && $class['endTime'] >= 31600) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31600 && $class['endTime'] >= 31700) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31600 && $class['endTime'] >= 31700) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 31700 && $class['endTime'] >= 31800) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31700 && $class['endTime'] >= 31800) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}    
+        echo "</tr>";
+        echo "<tr>";
+          echo "<td>Thursday</td>";
+          foreach($classes as $class) { if ($class['startTime'] <= 40800 && $class['endTime'] >= 40900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 40800 && $class['endTime'] >= 40900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 40900 && $class['endTime'] >= 41000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 40900 && $class['endTime'] >= 41000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41000 && $class['endTime'] >= 41100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41000 && $class['endTime'] >= 41100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41100 && $class['endTime'] >= 41200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41100 && $class['endTime'] >= 41200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41200 && $class['endTime'] >= 41300) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41200 && $class['endTime'] >= 41300) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41300 && $class['endTime'] >= 41400) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41300 && $class['endTime'] >= 41400) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41400 && $class['endTime'] >= 41500) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41400 && $class['endTime'] >= 41500) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41500 && $class['endTime'] >= 41600) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41500 && $class['endTime'] >= 41600) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41600 && $class['endTime'] >= 41700) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41600 && $class['endTime'] >= 41700) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 41700 && $class['endTime'] >= 41800) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41700 && $class['endTime'] >= 41800) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}    
+        echo "</tr>";
+        echo "<tr>";
+          echo "<td>Friday</td>";
+          foreach($classes as $class) { if ($class['startTime'] <= 50800 && $class['endTime'] >= 50900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 50800 && $class['endTime'] >= 50900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 50900 && $class['endTime'] >= 51000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 50900 && $class['endTime'] >= 51000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51000 && $class['endTime'] >= 51100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51000 && $class['endTime'] >= 51100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51100 && $class['endTime'] >= 51200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51100 && $class['endTime'] >= 51200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51200 && $class['endTime'] >= 51300) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51200 && $class['endTime'] >= 51300) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51300 && $class['endTime'] >= 51400) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51300 && $class['endTime'] >= 51400) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51400 && $class['endTime'] >= 51500) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51400 && $class['endTime'] >= 51500) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51500 && $class['endTime'] >= 51600) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51500 && $class['endTime'] >= 51600) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51600 && $class['endTime'] >= 51700) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51600 && $class['endTime'] >= 51700) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
+          foreach($classes as $class) { if ($class['startTime'] <= 51700 && $class['endTime'] >= 51800) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51700 && $class['endTime'] >= 51800) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";} 
+        echo "</tr>";                            
+       echo "</tbody>";
+       ?>
+       
     </table>
 
     <div class = "bottom-half">
