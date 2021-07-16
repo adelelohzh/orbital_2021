@@ -1,5 +1,5 @@
 ## NUS Orbital (CP2106 Independent Software Development Project) <br />
-### Team myNus <br />
+## Team myNus 
 ### Joshua Teo & Adele Loh <br /> <br />
 
 IMPORTANT: <br />
