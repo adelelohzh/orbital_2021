@@ -2,7 +2,7 @@
 
 IMPORTANT: <br />
 We used XAMPP w Apache & MySQL for this project. <br /> 
-To test out the system, please download XAMPP, place our files in XAMPP/htdocs/.. and run initdb.php, clicking on the 'Initialize Database' button to create the required database. <br /> <br />
+To test out the system, please download XAMPP, place our files in XAMPP/htdocs/.. <br /> <br />
 
 
 Login system working. <br />
@@ -10,8 +10,8 @@ Timetable system working.
   * Current features: <br />
     * -Search for modules by module code <br />
     * -Add and delete classes from timetable <br />
-  * Additional features to be added to timetable: <br />
     * -Color coding of modules <br />
+  * Additional features to be added to timetable: <br />
     * -Handling of clashing timings <br />
     * -Other minor optimizations/bug fixing <br />
 
