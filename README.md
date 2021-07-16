@@ -2,7 +2,7 @@
 
 IMPORTANT: <br />
 We used XAMPP w Apache & MySQL for this project. <br /> 
-To test out the system, please download XAMPP, place our files in XAMPP/htdocs/.. <br /> <br />
+To test out the system, please download XAMPP, place our files in XAMPP/htdocs/.. and begin at Main/Main.php <br /> <br />
 
 
 Login system working. <br />
