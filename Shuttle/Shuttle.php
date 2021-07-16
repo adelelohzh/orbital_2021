@@ -62,13 +62,13 @@
                     <?php 
                         echo "</td><td class='td2'>Next: {$shuttle['arrivalTime']}";
 
-                    if ($shuttle['arrivalTime'] != '-')
-                    {
+                    if ($shuttle['arrivalTime'] == '-' || $shuttle['arrivalTime'] == 'Arr')
+                    {} else {
                         echo " min";
                     }
                         echo "</td><td class='td3'>After: {$shuttle['nextArrivalTime']}";
-                    if ($shuttle['nextArrivalTime'] != '-')
-                    {
+                    if ($shuttle['nextArrivalTime'] == '-' || $shuttle['nextArrivalTime'] == 'Arr')
+                    {} else {
                         echo " min";
                     }
                     echo "</td></tr>";
