@@ -1,6 +1,6 @@
 ## NUS Orbital (CP2106 Independent Software Development Project) <br />
-##### Team myNus 
-##### Joshua Teo & Adele Loh <br /> <br />
+Team myNus <br />
+Joshua Teo & Adele Loh <br /> <br />
 
 IMPORTANT: <br />
 We used XAMPP w Apache & MySQL for this project. <br /> 
