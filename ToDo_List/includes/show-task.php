@@ -24,7 +24,7 @@
                     <?php while($row = $todoTasks->fetch_assoc()) { ?>
                     <div class="task">
                         <div class = "taskContent">
-                        <input type="checkbox" class = 'task-checkbox' id = "<?php echo $row['taskId']?>">
+                        <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>
                         <label for = "<?php echo $row['taskId']?>" class = "name">
                             <span class = "custom-checkbox"></span>
                             <?php echo $row['taskName']?>
@@ -175,11 +175,14 @@
 
         $('.task-checkbox').click(function(){
             const taskId = $(this).attr('id');
-
+            alert(taskId);
             $.ajax({ 
                 type: "POST", 
                 url: "includes/update.php", 
-                data: {taskId : taskId}
+                data: {taskId : taskId},
+                success: function(data) { 
+                        alert(data);
+                } 
             }); 
 
         });

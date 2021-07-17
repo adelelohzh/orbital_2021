@@ -7,7 +7,7 @@
     $maxNumber = $_POST['max'];
     $currNumber = 0;
 
-    $todoTasks = $conn -> query("SELECT * FROM tasks WHERE userId = '$useruid' ORDER BY case when taskDeadline is null then 1 else 0 end, taskDeadline");
+    $todoTasks = $conn -> query("SELECT * FROM tasks WHERE userId = '$useruid' AND taskChecked = '0' ORDER BY case when taskDeadline is null then 1 else 0 end, taskDeadline");
 ?>
 
     <?php if (mysqli_num_rows($todoTasks) > 0) {

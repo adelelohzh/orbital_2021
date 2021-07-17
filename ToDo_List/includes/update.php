@@ -2,7 +2,7 @@
 
 if (isset($_POST['taskId'])) {
 
-    include_once 'database_connection.php';
+    require('database_connection.php');
     session_start();
 
     $useruid = $_SESSION["useruid"];    

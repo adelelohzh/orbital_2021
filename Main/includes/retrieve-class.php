@@ -11,6 +11,7 @@
     $todayDay = date('l');
     $currentTime = date("H:i");
 
+
     switch($todayDay) {
         case "Monday":
             $dayOn = 1;
@@ -26,6 +27,12 @@
             break;
         case "Friday":
             $dayOn = 5;
+            break;
+        case "Saturday":
+            $dayOn = 6;
+            break;
+        case "Saturday":
+            $dayOn = 7;
             break;
         default:
             echo "switch statement not working";
