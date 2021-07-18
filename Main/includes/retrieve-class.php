@@ -31,7 +31,7 @@
         case "Saturday":
             $dayOn = 6;
             break;
-        case "Saturday":
+        case "Sunday":
             $dayOn = 7;
             break;
         default:
