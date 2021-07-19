@@ -294,6 +294,7 @@ h1
 {
     position: relative;
     text-align: center;
+    font-size: 24px;
     font-family: "Lucida Sans Typewriter";
     font-style: bold;
 }
@@ -371,18 +372,4 @@ h1
     font-size: 23px;
     font-family: 'Verdana';
     font-style: bold;
-}
-
-.emptyTimetable p 
-{
-    font-size: 22px;
-}
-
-.start
-{
-    background-color: navy;
-    color: white;
-    padding: 0.7vh 1vw;
-    border-radius: 15px;
-    font-size: 20px;
 }

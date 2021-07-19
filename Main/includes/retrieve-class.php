@@ -42,9 +42,7 @@
     $classes = $conn -> query("SELECT * FROM schedules WHERE userId = '$userid' AND dayOn = '$dayOn' ORDER BY startTime ASC");
 ?>
 
-<?php if (mysqli_num_rows($timetable) > 0) {
-            if (mysqli_num_rows($classes) > 0) { ?>
-
+<?php if (mysqli_num_rows($classes) > 0) { ?>
             <?php while($row = $classes->fetch_assoc()) {    
                 $start = substr( $row['startTime'], -4 );   
                 $end = substr( $row['endTime'], -4 );   
@@ -71,13 +69,5 @@
             } 
         } else { ?> 
             <p> No Upcoming Classes Today </p>
-    <?php } 
-    } else { ?>
-        <div class="emptyTimetable">
-            <p class = "line1"> You do not have a timetable <p>
-            <p class = "line2"> Start designing your timetable now! <p>
-            <a class = 'start' href = '../Timetable/Timetable.php'> START </a>
-        </div>
-        
     <?php } ?>
     
