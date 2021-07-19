@@ -6,7 +6,7 @@
 
     $todayDay = date('l');
     $currentTime = date("H:i");
-    $noClass = 0;
+    $haveClass = 0;
 
 
     switch($todayDay) {
@@ -45,31 +45,29 @@
                 $end = substr( $row['endTime'], -4 ); 
                 if ($currentTime >= $start) { // class either started or over alr
                     if ($currentTime <= $end) {  //class on gg
-                        $noClass = 0;?>  
-                        <p class = "modname"><?php echo $row['moduleName']?></p>
-                        <p class = "modcode"><?php echo $row['moduleCode']?></p>
-                        <p class = "modtime"> NOW &nbsp; — &nbsp;From <?php echo $start?> to <?php echo $end?></p>
+                        $haveClass = 1;?>
+                        <li class = "next-class">  
+                            <p class = "modname"><?php echo $row['moduleName']?></p>
+                            <p class = "modcode"><?php echo $row['moduleCode']?> - <?php echo $row['classNo']?></p>
+                            <p class = "modtime"> NOW &nbsp; — &nbsp;From <?php echo $start?> to <?php echo $end?></p>
+                        </li>
                     <?php 
-                        break;
-                    } else { // class over alr
-                        $noClass = 1;
-                    } 
+                    }
                 } else if ($currentTime <= $start) {  // havent start yet 
-                    $noClass = 0;?>
-                    <p class = "modname"><?php echo $row['moduleName']?></p>
-                    <p class = "modcode"><?php echo $row['moduleCode']?></p>
-                    <p class = "modtime"> At <?php echo $start?> to <?php echo $end?></p>
-            <?php   break;
-                } else { 
-                    $noClass = 1;?> 
-            <?php break;
-                } 
-            } 
+                    $haveClass = 1;?>
+                    <li class = "next-class">  
+                        <p class = "modname"><?php echo $row['moduleName']?></p>
+                        <p class = "modcode"><?php echo $row['moduleCode']?> - <?php echo $row['classNo']?></p>
+                        <p class = "modtime"> At <?php echo $start?> to <?php echo $end?></p>
+                    </li>
+            <?php } ?> 
+            <?php 
+                }  
         } else { ?> 
             <p> No Upcoming Classes Today </p>
     <?php } 
     
-    if ($noClass == 1)
+    if ($haveClass == 0)
     { ?>
         <p> No Upcoming Classes Today </p>
     <?php } ?>

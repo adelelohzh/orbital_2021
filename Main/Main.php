@@ -50,7 +50,9 @@
 
                 <div class="class-reminder">
                     <h1><a href="../Timetable/Timetable.php">Upcoming classes</a></h1>
-                    <div class = "upcoming-class" id = "upcoming-class">
+                    <div class = "upcoming-class" >
+                        <ul id = "upcoming-class">
+                        </ul>
                     </div>
                 </div>
         </div>

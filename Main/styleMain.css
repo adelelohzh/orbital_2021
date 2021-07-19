@@ -294,38 +294,41 @@ h1
 {
     position: relative;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-family: "Lucida Sans Typewriter";
     font-style: bold;
-}
-
-.modname
-{
-    font-size: 30px;
+    margin: 10px 0;
 }
 
 .modcode
 {
-    font-size: 24px;
     font-weight: bold;
 }
 
 .modtime
 {
     text-decoration: underline;
-    font-size: 26px;
 }
 
 .upcoming-class
 {
-    border: 2px solid #ccc;
-    border-radius: 15px;
+    
     position: relative;
     margin: 20px 0;
     top: 20px;
     width: 80%;
     left: 4vw;
     overflow:visible;
+}
+
+.upcoming-class li
+{
+    list-style: none;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    margin: 5px 0;
+    width: 40vw;
+    margin-left: -3vw;
 }
 
 .selectMax
