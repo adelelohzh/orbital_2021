@@ -49,10 +49,10 @@
                 $start = substr( $row['startTime'], -4 );   
                 $end = substr( $row['endTime'], -4 );   
                 if ($currentTime >= $start) { // class either started or over alr
-                    if ($currentTime <= $row['endTime']) { ?>  
-                        <p style = "font-size: 30px;"><?php echo $row['moduleName']?></p>
-                        <p><?php echo $row['moduleCode']?></p>
-                        <p> NOW &nbsp; — &nbsp;From <?php echo $row['startTime']?> to <?php echo $row['endTime']?></p>
+                    if ($currentTime <= $end) { ?>  
+                        <p class = "modname"><?php echo $row['moduleName']?></p>
+                        <p class = "modcode"><?php echo $row['moduleCode']?></p>
+                        <p class = "modtime"> NOW &nbsp; — &nbsp;From <?php echo $start?> to <?php echo $end?></p>
                     <?php 
                         break;
                     } else { ?>
@@ -60,9 +60,9 @@
             <?php       break;
                     }
                 } else if ($currentTime <= $start) { ?>
-                    <p><?php echo $row['moduleName']?></p>
-                    <p><?php echo $row['moduleCode']?></p>
-                    <p> At <?php echo $start?> to <?php echo $end?></p>
+                    <p class = "modname"><?php echo $row['moduleName']?></p>
+                    <p class = "modcode"><?php echo $row['moduleCode']?></p>
+                    <p class = "modtime"> At <?php echo $start?> to <?php echo $end?></p>
             <?php   break;
                 } else { ?> 
                     <p> No Upcoming Classes Today </p>
