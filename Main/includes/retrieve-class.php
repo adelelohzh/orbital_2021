@@ -2,14 +2,11 @@
     require('database_connection.php');
     $userid = $_SESSION["userid"];
 
-    // $user = $conn -> query("SELECT * FROM users where usersUid = '$useruid'");
-    // $currUser = $user->fetch_assoc();
-    // $userid = $currUser['usersId'];
-
     date_default_timezone_set('Singapore');
 
     $todayDay = date('l');
     $currentTime = date("H:i");
+    $noClass = 0;
 
 
     switch($todayDay) {
@@ -45,29 +42,35 @@
 <?php if (mysqli_num_rows($classes) > 0) { ?>
             <?php while($row = $classes->fetch_assoc()) {    
                 $start = substr( $row['startTime'], -4 );   
-                $end = substr( $row['endTime'], -4 );   
+                $end = substr( $row['endTime'], -4 ); 
                 if ($currentTime >= $start) { // class either started or over alr
-                    if ($currentTime <= $end) { ?>  
+                    if ($currentTime <= $end) {  //class on gg
+                        $noClass = 0;?>  
                         <p class = "modname"><?php echo $row['moduleName']?></p>
                         <p class = "modcode"><?php echo $row['moduleCode']?></p>
                         <p class = "modtime"> NOW &nbsp; — &nbsp;From <?php echo $start?> to <?php echo $end?></p>
                     <?php 
                         break;
-                    } else { ?>
-                        <p> No Upcoming Classes Today </p> 
-            <?php       break;
-                    }
-                } else if ($currentTime <= $start) { ?>
+                    } else { // class over alr
+                        $noClass = 1;
+                    } 
+                } else if ($currentTime <= $start) {  // havent start yet 
+                    $noClass = 0;?>
                     <p class = "modname"><?php echo $row['moduleName']?></p>
                     <p class = "modcode"><?php echo $row['moduleCode']?></p>
                     <p class = "modtime"> At <?php echo $start?> to <?php echo $end?></p>
             <?php   break;
-                } else { ?> 
-                    <p> No Upcoming Classes Today </p>
+                } else { 
+                    $noClass = 1;?> 
             <?php break;
                 } 
             } 
         } else { ?> 
             <p> No Upcoming Classes Today </p>
-    <?php } ?>
+    <?php } 
     
+    if ($noClass == 1)
+    { ?>
+        <p> No Upcoming Classes Today </p>
+    <?php } ?>
+
