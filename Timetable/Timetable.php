@@ -243,9 +243,16 @@
             echo "<p class = 'error-message fontsset1'>There is already a class at that timing!</p>";
           }
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        
+        if (isset($_GET['mod'])) {
+          $url = "https://api.nusmods.com/v2/2021-2022/modules/{$_GET['mod']}.json";
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $modCode = strtoupper($_POST['module']);
           $url = "https://api.nusmods.com/v2/2021-2022/modules/{$modCode}.json";
+        }
+
+        if (isset($url)) {
           $moduledata = @file_get_contents($url);
           if ($moduledata === FALSE) { 
             echo "<p class='fontsset1 status-message'>Invalid module code/No module code entered</p>"; 
@@ -290,7 +297,7 @@
             */
             $output = '<p class="fontsset1 status-message">Currently viewing timings for: '.$moduleCode.' '.$moduleName.'</p>'; //Display message
             echo $output;
-          } 
+          }
         }
       ?>
 

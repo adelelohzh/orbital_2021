@@ -109,7 +109,8 @@
         $sql = "INSERT INTO schedules (userID, moduleCode, moduleName, classNo, dayOn, startTime, endTime)
                     VALUES ('$userID', '$moduleCode', '$moduleName', '$classNo', '$dayOn', '$startTime', '$endTime');";
         mysqli_query($conn, $sql);
-        header("location: ../Timetable.php");
+        $strModuleCode =preg_replace('/\s+/', '', $moduleCode);
+        header("location: ../Timetable.php?mod={$strModuleCode}");
     } else {
         header("location: ../Timetable.php?error=clashingtime");
         exit();
