@@ -238,6 +238,11 @@
       </form>
 
       <?php
+        if (isset($_GET["error"])) {
+          if ($_GET["error"] == "clashingtime") {
+            echo "<p class = 'error-message fontsset1'>There is already a class at that timing!</p>";
+          }
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $url = "https://api.nusmods.com/v2/2021-2022/modules/{$_POST['module']}.json";
           $moduledata = @file_get_contents($url);

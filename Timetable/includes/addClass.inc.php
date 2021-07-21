@@ -73,9 +73,45 @@
         }
     }
 
-    $sql = "INSERT INTO schedules (userID, moduleCode, moduleName, classNo, dayOn, startTime, endTime)
-                    VALUES ('$userID', '$moduleCode', '$moduleName', '$classNo', '$dayOn', '$startTime', '$endTime');";
-    mysqli_query($conn, $sql);
+    function classExists($conn, $uid, $start, $end) {
+        $sql = "SELECT * FROM schedules
+                WHERE userID = ? AND (startTime = ? OR endTime = ?);";
+                //WHERE startTime = ? OR endTime = ? OR (? > startTime AND ? < endTime) OR (? > startTime AND ? < endTime);";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: ../Timetable.php?error=stmtfailed");
+            exit();
+        }
+    
+        mysqli_stmt_bind_param($stmt, "iii", $uid, $start, $end);
+        //mysqli_stmt_bind_param($stmt, "iiiiii", $start, $end, $start, $start, $end, $end);
+        mysqli_stmt_execute($stmt);
+    
+        $resultData = mysqli_stmt_get_result($stmt);
+    
+        if ($row = mysqli_fetch_assoc($resultData)) {
+            return $row;
+        } else {
+            $result = false;
+            return $result;
+        }
+        
+        /* Logic 
+        if ($start = $startTime OR $end = $endTime OR ($start > $startTime  AND $start < $endTime) OR ($end > $startTime AND $end < $endTime) {
+            $result = false;
+            return $result;
+        }
+        */
+        mysqli_stmt_close($stmt);		
+    }
 
-    header("location: ../Timetable.php");
+    if(classExists($conn, $userID, $startTime, $endTime) === false) {
+        $sql = "INSERT INTO schedules (userID, moduleCode, moduleName, classNo, dayOn, startTime, endTime)
+                    VALUES ('$userID', '$moduleCode', '$moduleName', '$classNo', '$dayOn', '$startTime', '$endTime');";
+        mysqli_query($conn, $sql);
+        header("location: ../Timetable.php");
+    } else {
+        header("location: ../Timetable.php?error=clashingtime");
+        exit();
+    }
 ?>
