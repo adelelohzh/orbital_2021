@@ -16,7 +16,7 @@
                     $todoTasks = $conn -> query("SELECT * FROM tasks WHERE listId = '$list_id' AND userId = '$useruid' ORDER BY taskId ASC");
 ?>
           <div class="todoheader" id = "todoheader">
-                <h2 class= "list-title" data-list-title><?php echo $listName?></h2>
+                <h2 class= "list-title fontsset1" data-list-title><?php echo $listName?></h2>
             </div>
 
             <div class="todobody" >
@@ -117,7 +117,7 @@
                             name = "taskname"
                             class = "new addtask"
                             data-new-task-input
-                            placeholder="New Task Name"
+                            placeholder="Create New Task"
                             aria-label="New Task Name"
                             />
                             <input type="hidden" id="currList" name="currList" value = "4">

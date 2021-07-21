@@ -28,9 +28,9 @@
     ?>
     
     <div class = "to-do-body">
-        <h1 class = "title">To-Do List</h1>
+        <h1 class = "title fontsset1">To-Do List</h1>
 
-        <div class="all-tasks">
+        <div class="all-tasks fontsset1">
             <h2 class="tasks-list-title">Task Lists</h2>
             <ul class="task-list" data-lists>
                 <?php 
@@ -58,7 +58,7 @@
                     name = "listName"
                     class = "new list"
                     data-new-list-input
-                    placeholder="New List Name"
+                    placeholder="Create New List"
                     aria-label="New List Name"
                     />
                     <button class="btn-list" aria-label="create new list">+</button>

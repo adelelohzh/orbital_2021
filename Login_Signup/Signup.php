@@ -12,7 +12,7 @@
 
     <div class="form">
         <p class="title fontsset1">Sign Up</p>
-        <p class = "member"> Already a member? <a href = 'Login.php'>Log in</a></p>
+        <p class = "member fontsset1"> Already a member? <a href = 'Login.php'>Log in</a></p>
         <form action="includes/signup.inc.php" method="post">
             <input type="text" name="name" placeholder="Name">
             <input type="text" name="email" placeholder="Email">
