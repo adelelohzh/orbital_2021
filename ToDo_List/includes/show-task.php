@@ -25,7 +25,7 @@
                     <div class="task">
                         <div class = "taskContent">
                         <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>
-                        <label for = "<?php echo $row['taskId']?>" class = "name">
+                        <label for = "<?php echo $row['taskId']?>" class = "name fontsset1">
                             <span class = "custom-checkbox"></span>
                             <?php echo $row['taskName']?>
                         </label>
