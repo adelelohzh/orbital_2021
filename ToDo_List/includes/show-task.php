@@ -24,13 +24,8 @@
                     <?php while($row = $todoTasks->fetch_assoc()) { ?>
                     <div class="task">
                         <div class = "taskContent">
-<<<<<<< HEAD
                         <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>
                         <label for = "<?php echo $row['taskId']?>" class = "name fontsset1">
-=======
-                        <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>   
-                        <label for = "<?php echo $row['taskId']?>" class = "name">
->>>>>>> 99d727e13d496e87f2e27d0311f4f02c380792b5
                             <span class = "custom-checkbox"></span>
                             <?php echo $row['taskName']?>
                         </label>
