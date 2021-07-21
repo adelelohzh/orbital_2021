@@ -16,7 +16,7 @@
                     $todoTasks = $conn -> query("SELECT * FROM tasks WHERE listId = '$list_id' AND userId = '$useruid' ORDER BY taskId ASC");
 ?>
           <div class="todoheader" id = "todoheader">
-                <h2 class= "list-title fontsset1" data-list-title><?php echo $listName?></h2>
+                <h2 class= "list-title" data-list-title><?php echo $listName?></h2>
             </div>
 
             <div class="todobody" >
@@ -24,8 +24,13 @@
                     <?php while($row = $todoTasks->fetch_assoc()) { ?>
                     <div class="task">
                         <div class = "taskContent">
+<<<<<<< HEAD
                         <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>
                         <label for = "<?php echo $row['taskId']?>" class = "name fontsset1">
+=======
+                        <input type="checkbox" class = "task-checkbox" id = "<?php echo $row['taskId']?>" <?php echo ($row['taskChecked']==1 ? 'checked' : '');?>/>   
+                        <label for = "<?php echo $row['taskId']?>" class = "name">
+>>>>>>> 99d727e13d496e87f2e27d0311f4f02c380792b5
                             <span class = "custom-checkbox"></span>
                             <?php echo $row['taskName']?>
                         </label>
@@ -109,6 +114,7 @@
                             data-new-task-input
                             placeholder="This is a required field"
                             aria-label="New Task Name"
+                            maxlength = "30"
                             />
                             <input type="hidden" id="currList" name="currList" value = "4">
                             <button type = "submit" name = "submit" class="btn-task" aria-label="create new task">+</button>
@@ -117,8 +123,9 @@
                             name = "taskname"
                             class = "new addtask"
                             data-new-task-input
-                            placeholder="Create New Task"
+                            placeholder="New Task Name"
                             aria-label="New Task Name"
+                            maxlength = "30"
                             />
                             <input type="hidden" id="currList" name="currList" value = "4">
                             <button type = "submit" name = "submit" class="btn-task" aria-label="create new task">+</button>
