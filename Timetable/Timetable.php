@@ -244,7 +244,8 @@
           }
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          $url = "https://api.nusmods.com/v2/2021-2022/modules/{$_POST['module']}.json";
+          $modCode = strtoupper($_POST['module']);
+          $url = "https://api.nusmods.com/v2/2021-2022/modules/{$modCode}.json";
           $moduledata = @file_get_contents($url);
           if ($moduledata === FALSE) { 
             echo "<p class='fontsset1 status-message'>Invalid module code/No module code entered</p>"; 
