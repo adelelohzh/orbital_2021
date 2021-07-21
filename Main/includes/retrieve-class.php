@@ -63,12 +63,14 @@
             <?php } ?> 
             <?php 
                 }  
-        } else { ?> 
-            <p> No Upcoming Classes Today </p>
-    <?php } 
+        } else { 
+            $haveClass == 0;
+        }  
     
     if ($haveClass == 0)
     { ?>
-        <p> No Upcoming Classes Today </p>
+        <li class = "no-class">  
+                <p> No Upcoming Classes Today </p>
+        </li>
     <?php } ?>
 

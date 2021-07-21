@@ -49,10 +49,11 @@
                                     
                                 } else { 
                                 ?>
-                                    <label class = "nulldeadline">&nbsp</label>
+                                    <label class = "nulldeadline"></label>
                                 <?php } ?>  
                         </div>
-    
+
+                        <div class="holder">
                         <div class="popout" id = "<?php echo $row['taskId']?>editorPopout">
                             
                             <div class="popout-content" >
@@ -94,6 +95,7 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                     <?php } ?>
