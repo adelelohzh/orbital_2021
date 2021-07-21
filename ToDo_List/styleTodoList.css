@@ -84,7 +84,6 @@ a{
      text-align: left;
      font-size: 40px;
      text-decoration: underline;
-     letter-spacing: 0px;
  }
 
  .all-tasks
@@ -94,12 +93,13 @@ a{
      grid-area: lists;
      font-size: 10px;
      display:ruby-base;
+     margin-right: 0.5vh;
  }
 
  .tasks-list-title
  {
      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-     letter-spacing: 0px;
+     letter-spacing: 0.2vw;
      text-decoration: underline;
  }
  
@@ -115,6 +115,10 @@ a{
     line-height: 3vh;
     list-style: circle;
     cursor:pointer;
+    /* overflow: auto; */
+    overflow-wrap: break-word;
+    margin-right: 2vh;
+    margin-left: -1vh;
  }
 
  .new
@@ -134,9 +138,8 @@ a{
 
  .list-title
  {
-    letter-spacing: 0px; 
-    margin: 1vw;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     margin: 1vw;
+     overflow-wrap: break-word;
  }
 
  .new:focus 
@@ -174,7 +177,6 @@ a{
      padding: 1vw;
      margin: 0.3vw;
      margin-top: 1vh;
-     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  }
 
  .btn-list
@@ -187,7 +189,6 @@ a{
     font-weight: 800;
     margin-right: 0.25rem;
     transition: opacity 250ms ease-in;
-    letter-spacing: 0px;
  }
 
  .btn-task
@@ -200,7 +201,6 @@ a{
      font-weight: 800;
      margin-right: 0.25rem;
      transition: opacity 250ms ease-in;
-     letter-spacing: 0px;
  }
 
 .btn-task:hover
@@ -211,7 +211,7 @@ a{
  .btn-delete
 {
     font-weight: 500;
-    letter-spacing: 0px;
+    letter-spacing: 0.1vh;
     padding: 0.4vh;
     margin: 1vh 3vh 0 0;
     background: inherit;
@@ -230,7 +230,7 @@ a{
 .btn-clear
 {
     font-weight: 500;
-    letter-spacing: 0px;
+    letter-spacing: 0.1vw;
     padding: 0.5vh;
     margin: 1vh 8vw 0 0;
     background: inherit;
@@ -374,17 +374,7 @@ a{
     position : fixed;      
     top : 0; 
     left: 0;      
-    z-index : 500; 
-    /* display: none;
-    background-color:black;
-    position: relative;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    z-index: 100;
-    top: -10vh;
-    left: 15vw; */
-
+    z-index : 100; 
 }
 
 
@@ -400,12 +390,18 @@ a{
     background-color:rgba(255, 255, 255, 1.00);
     opacity: 100%;
     border-width: 1vw;
-    z-index: 101;
+    z-index: 105;
     border: 1px solid black;
     box-shadow: 1vh 1vh grey;
     text-align: center;
+    overflow: auto;
 }
 
+.edit-task
+{
+    overflow: auto;
+    z-index: 200;
+}
 
 .errorPopout
 {
@@ -499,7 +495,7 @@ a{
 
 .save-btn
 {
-    margin-top: 2vh;
+    margin-top: 0;
     border: 1px solid black;
     border-radius: 15px;
     background: none;
