@@ -16,7 +16,7 @@
                     $todoTasks = $conn -> query("SELECT * FROM tasks WHERE listId = '$list_id' AND userId = '$useruid' ORDER BY taskId ASC");
 ?>
           <div class="todoheader" id = "todoheader">
-                <h2 class= "list-title" data-list-title><?php echo $listName?></h2>
+                <h2 class= "list-title fontsset1" data-list-title><?php echo $listName?></h2>
             </div>
 
             <div class="todobody" >
@@ -36,15 +36,15 @@
                                         $todayDate = date("Y-m-d");
                                         if ($row['taskDeadline'] == $todayDate) 
                                         { ?>
-                                        <label class = "deadline" style = "color: red; font-size: 15px;">DUE: TODAY</label>
+                                        <label class = "deadline fontsset1" style = "color: red; font-size: 15px;">DUE: TODAY</label>
                                         <?php } 
                                         else if ($row['taskDeadline'] < $todayDate) // overdue
                                         { ?>
-                                        <label class = "deadline" style = "color: red;">OVERDUE: <?php echo $row['taskDeadline'];?></label>
+                                        <label class = "deadline fontsset1" style = "color: red;">OVERDUE: <?php echo $row['taskDeadline'];?></label>
                                         <?php } 
                                         else // not due yet
                                         { ?>
-                                        <label class = "deadline">DUE: <?php echo $row['taskDeadline'];?></label>
+                                        <label class = "deadline fontsset1">DUE: <?php echo $row['taskDeadline'];?></label>
                                         <?php } 
                                     
                                 } else { 
@@ -57,7 +57,7 @@
                         <div class="popout" id = "<?php echo $row['taskId']?>editorPopout">
                             
                             <div class="popout-content" >
-                                <h1 class = "task-title">Task</h1>
+                                <h1 class = "task-title fontsset1">Task</h1>
 
                                 <div class="cancel">
                                     <button class = "cancel-btn" id = "<?php echo $row['taskId']?>"> X </button>
@@ -66,7 +66,7 @@
                                 <div class = "edit-task">
                                     <form action = "" method = "POST" name = "editForm">
                                         <div class = "nameInput">
-                                            <label> 
+                                            <label class = "fontsset1"> 
                                                 Task Name: 
                                             </label>
                                             <input 
@@ -78,7 +78,7 @@
                                             />
                                         </div>
                                         <div class = "dateInput">
-                                            <label> 
+                                            <label class = "fontsset1"> 
                                                 Deadline: 
                                             </label>
                                             <input 
@@ -90,7 +90,7 @@
                                             /> 
                                         </div>
                                         <div class = "submitInput">
-                                            <button class = "save-btn" type = "button" id = "<?php echo $row['taskId']?>"> Save </button>
+                                            <button class = "save-btn fontsset1" type = "button" id = "<?php echo $row['taskId']?>"> Save </button>
                                         </div>
                                     </form>
                                 </div>
@@ -129,8 +129,8 @@
                 </div> 
 
                 <div class="delete-tasks">
-                    <button class = "btn-clear" data-clear-list>Clear Completed Tasks</button>
-                    <button class = "btn-delete" data-delete-list>Delete List</button>
+                    <button class = "btn-clear fontsset1" data-clear-list>Clear Selected Tasks</button>
+                    <button class = "btn-delete fontsset1" data-delete-list>Delete List</button>
                 </div>
             </div>
 
