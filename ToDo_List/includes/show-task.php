@@ -177,14 +177,10 @@
 
         $('.task-checkbox').click(function(){
             const taskId = $(this).attr('id');
-            alert(taskId);
             $.ajax({ 
                 type: "POST", 
                 url: "includes/update.php", 
                 data: {taskId : taskId},
-                success: function(data) { 
-                        alert(data);
-                } 
             }); 
 
         });
