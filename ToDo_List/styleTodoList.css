@@ -292,6 +292,11 @@ a{
     transform: scaleX(1);
 } 
 
+.name
+{
+    display: inline-block;
+}
+
 .addtask
 {
     font-size: 15px;
@@ -302,6 +307,11 @@ a{
 .taskContent
 {
     margin-bottom: 1vh;
+}
+
+.name
+{
+    overflow: auto;
 }
 
 .task label
