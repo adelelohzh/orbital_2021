@@ -14,9 +14,7 @@
     * -Search for modules by module code <br />
     * -Add and delete classes from timetable <br />
     * -Color coding of modules <br />
-  * Additional features to be added to timetable: <br />
     * -Handling of clashing timings <br />
-    * -Other minor optimizations/bug fixing <br />
 
 :heavy_check_mark: To-Do List system working.
   * Current features: <br />
@@ -25,10 +23,6 @@
     * -Editing tasks to change task name or add deadline <br />
     * -Clearing of tasks <br />
     * -Deleting of list <br />
-  * Additional features to be added to todo-list: <br />
-    * -Sync to homepage for reminders <br />
-    * -Tidying up css part <br />
-    * -Other minor optimizations/bug fixing <br />
 
 :heavy_check_mark: Shuttle Bus system working.
   * Current features: <br />
