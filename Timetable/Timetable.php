@@ -264,6 +264,7 @@
             $semesterData = $decodedmoduledata['semesterData'][0]['timetable']; //for semester1 only. assuming all is semester 1
             $lectures = array(); //2d array for lectures: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
             $tutorials = array(); //2d array for tutorials: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
+            $sectionals = array(); //2d array for sectionals: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
             $recitations = array(); //2d array for recitations: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
             $labs = array(); //2d array for labs: ((classcode1, day, starttime, endtime), (classcode2, day,...)...)
             foreach($semesterData as $class) {
@@ -275,6 +276,10 @@
                 case "Tutorial":
                   $temp = array(array("Tutorial " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName));
                   $tutorials = array_merge($tutorials, $temp);
+                  break;
+                case "Sectional Teaching":
+                  $temp = array(array("Sectional " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName));
+                  $sectionals = array_merge($sectionals, $temp);
                   break;
                 case "Recitation":
                   $temp = array(array("Recitation " . $class['classNo'], $class['day'], $class['startTime'], $class['endTime'], $moduleCode, $moduleName));
@@ -306,7 +311,7 @@
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST">
             <select name="selectClass" placeholder="Select lecture timeslot">
-              <option value="" disabled selected>Select Lecture Timeslot</option>
+              <option value="" disabled selected>Select Lecture</option>
               <?php
               foreach($lectures as $class) {
                 $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
@@ -319,7 +324,7 @@
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST"> 
             <select name="selectClass" placeholder="Select tutorial timeslot">
-              <option value="" disabled selected>Select Tutorial Timeslot</option>
+              <option value="" disabled selected>Select Tutorial</option>
               <?php
               foreach($tutorials as $class) {
                 $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
@@ -330,9 +335,22 @@
             <input type="submit" name="submit" value="Submit">
           </form>
 
+          <form class = "select-form" action="includes/addClass.inc.php" method="POST"> 
+            <select name="selectClass" placeholder="Select sectional timeslot">
+              <option value="" disabled selected>Select Sectional</option>
+              <?php
+              foreach($sectionals as $class) {
+                $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
+                echo "<option value='$class[0], $class[1], $class[2], $class[3], $class[4], $class[5]'>$JOIN_VAR</option>";
+              }
+              ?>
+            </select>
+            <input type="submit" name="submit" value="Submit">
+          </form>
+
           <form class = "select-form" action="includes/addClass.inc.php" method="POST">
             <select name="selectClass" placeholder="Select recitation timeslot">
-              <option value="" disabled selected>Select Recitation Timeslot</option>
+              <option value="" disabled selected>Select Recitation</option>
               <?php
               foreach($recitations as $class) {
                 $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
@@ -345,7 +363,7 @@
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST">
             <select name="selectClass" placeholder="Select lab timeslot">
-              <option value="" disabled selected>Select Lab Timeslot</option>
+              <option value="" disabled selected>Select Lab</option>
               <?php
               foreach($labs as $class) {
                 $JOIN_VAR = $class[0].' '.$class[1].' '.$class[2].'-'.$class[3].'Hrs';
