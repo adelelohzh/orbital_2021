@@ -1,6 +1,7 @@
 # NUS Orbital (CP2106 Independent Software Development Project) <br />
 <b>Team myNus<b> <br />
 <b>Joshua Teo & Adele Loh<b> <br />
+<b>Application: https://my-nus.herokuapp.com/Main/Main.php <br />
 
 ## Table of Contents <br />
   * Features
