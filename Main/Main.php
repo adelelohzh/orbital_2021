@@ -7,7 +7,7 @@
             <?php include '../Header/styleHeader.css'; ?>
         </style>
 
-    <body class = "full grey">
+    <body class = "full grey bg_img">
    
     <!-- Main -->
     <div class="main">
@@ -17,44 +17,74 @@
             if (!isset($_SESSION["useruid"])) {
         ?>
 
-        <div class="main0">
-            <p class="main0-left fontsset1"><a href="../Login_Signup/Signup.php">Sign Up</a></p>
-            <p class="main0-right fontsset1"><a href="../Login_Signup/Login.php">Log In</a></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="main_h_img">
+                        <img src="./img/user.png">
+                    </div>
+                    <div class="main0">
+                        <p class="main0-left fontsset1"><a href="../Login_Signup/Signup.php">Sign Up</a></p>
+                        <p class="main0-right fontsset1"><a href="../Login_Signup/Login.php">Log In</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
+        
         
         <?php 
             } else { 
         ?>
 
-        <div class = "main-left">
-            <?php echo "<p class = 'fontsset2'>Hello there, " . $_SESSION["useruid"] . "</p>"; ?>   
+        <div class="container main-left">
+            
         </div>
+        
 
-        <div class = "main-right">
+        <div class = "main-right bg_color">
             <p class="fontsset1"></p>
-                <div class="dashboard">
-                <div class = "right-header">
-                    <h1> What's due soon? </h1>
-                    <div class="selectMax">
-                        <select id = "maximumTasks">
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                            <option value="7">7</option>
-                            <option value="10">10</option>
-                        </select>
+
+            <div class="container bg_main">
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class = "main_sec">
+                            <?php echo "<h2 class = 'fontsset2'>Hello there, " . $_SESSION["useruid"] . "</h2>"; ?>   
+                        </div>
                     </div>
-                </div>
-                    <ul id = "upcoming-tasks">
-                    </ul>
                 </div>
 
-                <div class="class-reminder">
-                    <h1><a href="../Timetable/Timetable.php">Upcoming classes</a></h1>
-                    <div class = "upcoming-class" >
-                        <ul id = "upcoming-class">
-                        </ul>
+                <div class="row">
+                    <div class="col-md-6 border_r">
+                        <div class="dashboard">
+                        <div class = "right-header">
+                            <h1> What's due soon? </h1>
+                            <div class="selectMax">
+                                <select id = "maximumTasks">
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="7">7</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                            <ul id = "upcoming-tasks">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="class-reminder">
+                            <h1><a href="../Timetable/Timetable.php">Upcoming classes</a></h1>
+                            <div class = "upcoming-class" >
+                                <ul id = "upcoming-class">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+                
         </div>
 
         <?php

@@ -12,7 +12,7 @@
              <?php include '../Header/styleHeader.css'; ?>
         </style>
 
-    <body class = "full grey">
+    <body class = "full grey bg_img">
 
     <?php
             include_once '../Header/Header.php';          
@@ -21,77 +21,99 @@
             } else { 
                 $userid = $_SESSION['useruid'];
 
-                $getquery = "SELECT * FROM taskName
+                $getquery = "SELECT * FROM tasks
                 ORDER BY taskId DESC";
 
                 $alltasks = mysqli_query($conn, $getquery);
     ?>
     
+
     <div class = "to-do-body">
-        <h1 class = "title fontsset1">To-Do List</h1>
 
-        <div class="all-tasks fontsset1">
-            <h2 class="tasks-list-title">Task Lists</h2>
-            <ul class="task-list" data-lists>
-                <?php 
-                    $taskList = $conn -> query("SELECT * FROM taskList WHERE userId = '$userid' ORDER BY listId ASC");
-                ?>
-                <?php while($listRow = $taskList->fetch_assoc()) { ?>
-                    <li class = "listElement" id = '<?php echo $listRow['listId']?>'> 
-                        <?php echo $listRow['listName']?>
-                    </li>
-                <?php } ?>
-            </ul>
-
-            <form action="includes/addList.php" method = "POST" autocomplete = "off">
-                <?php if (isset($_GET['mess']) && $_GET['mess'] == 'error1') { ?>
-                    <input type="text"
-                    name = "listName"
-                    class = "new list"
-                    data-new-list-input
-                    placeholder="This is a required field"
-                    aria-label="New List Name"
-                    />
-                    <button class="btn-list" aria-label="create new list">+</button>
-                <?php } else { ?>
-                    <input type="text"
-                    name = "listName"
-                    class = "new list"
-                    data-new-list-input
-                    placeholder="Create New List"
-                    aria-label="New List Name"
-                    />
-                    <button class="btn-list" aria-label="create new list">+</button>
-                <?php } ?>
-            </form> 
-        </div>
-
-        <div class="todo-list">
-                <div id = "todo-container">
+        <div class="container bg_to_do">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class = "title fontsset1">To-Do List</h1>
                 </div>
-            
-        </div>
-                
-        <div class="errorPopout" id = "errorpopout">
-            <div class="errorPopout-content" >
-                <h1 class = "task-title">Error</h1>
-                <div class="errorMessage">
-                    <p>Please enter a value!</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    
+                    <div class="all-tasks fontsset1">
+                        <h2 class="tasks-list-title">Task Lists</h2>
+                        <ul class="task-list" data-lists>
+                            <?php 
+                                $taskList = $conn -> query("SELECT * FROM taskList WHERE userId = '$userid' ORDER BY listId ASC");
+                            ?>
+                            <?php while($listRow = $taskList->fetch_assoc()) { ?>
+                                <li class = "listElement" id = '<?php echo $listRow['listId']?>'> 
+                                    <?php echo $listRow['listName']?>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+
+                    <div class="all-tasks fontsset1">
+                        <form action="includes/addList.php" method = "POST" autocomplete = "off">
+                            <?php if (isset($_GET['mess']) && $_GET['mess'] == 'error1') { ?>
+                                <input type="text"
+                                name = "listName"
+                                class = "new list"
+                                data-new-list-input
+                                placeholder="This is a required field"
+                                aria-label="New List Name"
+                                />
+                                <button class="btn-list" aria-label="create new list">+</button>
+                            <?php } else { ?>
+                                <input type="text"
+                                name = "listName"
+                                class = "new list"
+                                data-new-list-input
+                                placeholder="Create New List"
+                                aria-label="New List Name"
+                                />
+                                <button class="btn-list" aria-label="create new list">+</button>
+                            <?php } ?>
+                        </form> 
+                    </div>
+
                 </div>
-                <button class = "close-btn"> Close </button>
+
+                <div class="col-md-10">
+                    
+                    <div class="todo-list">
+                        <div id = "todo-container">
+                        </div>
+                    </div>
+                            
+                    <div class="errorPopout" id = "errorpopout">
+                        <div class="errorPopout-content" >
+                            <h1 class = "task-title">Error</h1>
+                            <div class="errorMessage">
+                                <p>Please enter a value!</p>
+                            </div>
+                            <button class = "close-btn"> Close </button>
+                        </div>
+                    </div>
+
+                    <div class="errorPopout" id = "invalidDateErrorpopout">
+                        <div class="errorPopout-content" >
+                            <h1 class = "task-title">Error</h1>
+                            <div class="invalidErrorMessage">
+                                <p>Please enter a valid date (YYYY-MM-DD)!</p>
+                            </div>
+                            <button class = "close-btn"> Close </button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        <div class="errorPopout" id = "invalidDateErrorpopout">
-            <div class="errorPopout-content" >
-                <h1 class = "task-title">Error</h1>
-                <div class="invalidErrorMessage">
-                    <p>Please enter a valid date (YYYY-MM-DD)!</p>
-                </div>
-                <button class = "close-btn"> Close </button>
-            </div>
-        </div>
-
+        
+        
+    </div>
         <!-- </div>
         <template id = "task-template">
             <div class="task">
@@ -105,8 +127,8 @@
                 <button class= "option-btn">
                     <i class = "material-icons" data-option-button>more_horiz</i>
                 </button>
-            </div> -->
-        </template>
+            </div>
+        </template> -->
     </body>
     <?php 
         }

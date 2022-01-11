@@ -7,19 +7,26 @@
             <?php include '../Header/styleHeader.css'; ?>
         </style>
 
-    <body class = "full grey">
+    <body class = "full grey bg_img">
     <?php include_once '../Header/Header.php'; ?>
 
     <div class="form">
-        <p class="title fontsset1">Sign Up</p>
+        <div class="main_h_img">
+            <img src="./img/user.png">
+        </div>
+        <h1 class="title fontsset1">Sign Up</h1>
         <p class = "member fontsset1"> Already a member? <a href = 'Login.php'>Log in</a></p>
         <form action="includes/signup.inc.php" method="post">
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="email" placeholder="Email">
-            <input type="text" name="uid" placeholder="Username">
-            <input type="password" name="pwd" placeholder="Password">
-            <input type="password" name="pwdrepeat" placeholder="Repeat Password">
-            <button type="submit" name="submit">Sign up</button>
+
+            <div class="form-group">
+                <input class="form-control" type="text" name="name" placeholder="Name">
+                <input class="form-control" type="text" name="email" placeholder="Email">
+                <input class="form-control" type="text" name="uid" placeholder="Username">
+                <input class="form-control" type="password" name="pwd" placeholder="Password">
+                <input class="form-control" type="password" name="pwdrepeat" placeholder="Repeat Password">
+                <button class="btn btn-primary btn_cu" type="submit" name="submit">Sign up</button>
+            </div>
+
         </form>
 
     <?php

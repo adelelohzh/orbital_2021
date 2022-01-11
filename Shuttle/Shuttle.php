@@ -7,7 +7,7 @@
         <?php include '../Header/styleHeader.css'; ?>
     </style>
 
-    <body class = "full grey">
+    <body class = "full grey bg_img">
     <?php include_once '../Header/Header.php'; ?>
 
     <?php
@@ -17,6 +17,7 @@
             } else { 
     ?>
 
+    <div class="container">
     <div class = "shuttle">
     <?php
         $auth = base64_encode('NUSnextbus:13dL?zY,3feWR^"T');
@@ -47,7 +48,7 @@
         <?php if (isset($_GET['stop'])) { ?>
         <p class = "busstoptitle fontsset1 fontsize20">Bus Stop: <?php echo $_GET['stop'] ?></p>
         <table class="table fontsset1">
-            <thead><tr><td>Buses:</td></tr></thead>
+            <thead><tr><td class="_tble" colspan="3">Buses:</td></tr></thead>
             <tbody>
             <?php
                 $auth = base64_encode('NUSnextbus:13dL?zY,3feWR^"T');
@@ -78,6 +79,7 @@
         </table>
         <?php } ?>
     </div>
+</div>
         <?php
             }
         ?>   

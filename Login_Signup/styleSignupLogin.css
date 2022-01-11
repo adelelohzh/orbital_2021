@@ -1,8 +1,7 @@
 
 
 .fontsset1{
-    /* font-family: Georgia, Verdana, Helvetica */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 /* Links */
@@ -27,7 +26,7 @@ a{
 .listfont
 {
     font-size: 16px;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
     color: #1e1e1e;
 }
 
@@ -78,23 +77,29 @@ a{
 }
 
 .form{
-    height: 100%;
+    height: auto;
     text-align: center;
-    padding: 8vh 0;
+    padding: 50px 55px;
     margin: 50px 250px;
-    border: 1px solid black;
-    background-color: white;
-    box-shadow: 7px 7px grey;
+    border: 0;
+    background-color: #fff;
+    box-shadow: none;
+    width: 500px;
+    display: block;
+    margin: 58px auto;
 }
 
 .form input{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
-    padding: 8px;
+    padding: 10px;
     display: block;
     border: 1px solid #ccc;
-    box-shadow: 3px 3px grey;
+    box-shadow: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    height: 45px;
 }
 
 .form p
@@ -125,13 +130,12 @@ a{
 
 .form button{
     margin-top: 20px;
-    border: 1px solid black;
-    border-radius: 15px;
-    background: none;
-    padding: 8px 18px;
-    box-shadow: 2px 1px slategrey;
+    /* border: 1px solid black; */
+    /* border-radius: 15px; */
+    /* background: none; */
+    /* padding: 8px 18px; */
+    /* box-shadow: 2px 1px slategrey; */
     cursor: pointer;
-
     transition-duration: 200ms;
 }
 
@@ -156,5 +160,45 @@ a{
     font-size: 16px;
 }
 
+/* new styles */
+body {
+    font-family: 'Open Sans', sans-serif !important;
+}
+a:hover {
+    text-decoration: none !important;
+}
 
+.main_h_img img {
+    width: 100px;
+}
 
+.bg_img {
+    background-image: url('./img/bg_sys.jpg');
+    height: 100vh;
+    background-size: cover !important;
+    background-position: bottom center;
+}
+
+button.btn_cu {
+    padding: 10px;
+    border: 0px solid;
+    border-radius: 30px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    margin: 0;
+    margin-top: 10px;
+    background: #003d7c;
+}
+h1.fontsset1 {
+    font-size: 50px;
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+p.member {
+    font-size: 15px;
+    font-weight: 600;
+}
+p.member a{
+    color: #003d7c !important;
+}

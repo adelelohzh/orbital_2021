@@ -11,9 +11,14 @@
             <?php include '../Header/styleHeader.css'; ?>
         </style>
 
-    <body class = "full grey">
+    <body class = "full bg_img">
     <?php 
-      include_once '../Header/Header.php';
+      include_once '../Header/Header.php'; ?>
+
+      <div class="block">
+        
+      
+      <?php
 
       //Accessing data from database
       $userID = $_SESSION["userid"];
@@ -68,8 +73,15 @@
       //echo print_r($coloredModules);
     ?>  
 
+    </div>
+
+<div class="container-fluid table_one">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      
+    
     <!-- Timetable -->
-    <table class="timetable fontsset1">
+    <table class="timetable fontsset1 table">
 
       <thead>
         <tr>
@@ -121,7 +133,7 @@
       
       echo "<tbody>";
         echo "<tr>";
-          echo "<td>Monday</td>";
+          echo "<td>Mon</td>";
           foreach($classes as $class) { if ($class['startTime'] <= 10800 && $class['endTime'] >= 10900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 10800 && $class['endTime'] >= 10900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 10900 && $class['endTime'] >= 11000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 10900 && $class['endTime'] >= 11000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 11000 && $class['endTime'] >= 11100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 11000 && $class['endTime'] >= 11100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
@@ -139,7 +151,7 @@
         echo "</tr>";
         
         echo "<tr>";
-          echo "<td>Tuesday</td>";
+          echo "<td>Tue</td>";
           foreach($classes as $class) { if ($class['startTime'] <= 20800 && $class['endTime'] >= 20900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 20800 && $class['endTime'] >= 20900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 20900 && $class['endTime'] >= 21000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 20900 && $class['endTime'] >= 21000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 21000 && $class['endTime'] >= 21100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 21000 && $class['endTime'] >= 21100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
@@ -156,7 +168,7 @@
           foreach($classes as $class) { if ($class['startTime'] <= 22100 && $class['endTime'] >= 22200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 22100 && $class['endTime'] >= 22200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}   
         echo "</tr>";
         echo "<tr>";
-          echo "<td>Wednesday</td>";
+          echo "<td>Wed</td>";
           foreach($classes as $class) { if ($class['startTime'] <= 30800 && $class['endTime'] >= 30900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 30800 && $class['endTime'] >= 30900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 30900 && $class['endTime'] >= 31000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 30900 && $class['endTime'] >= 31000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 31000 && $class['endTime'] >= 31100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 31000 && $class['endTime'] >= 31100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
@@ -173,7 +185,7 @@
           foreach($classes as $class) { if ($class['startTime'] <= 32100 && $class['endTime'] >= 32200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 32100 && $class['endTime'] >= 32200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}    
         echo "</tr>";
         echo "<tr>";
-          echo "<td>Thursday</td>";
+          echo "<td>Thu</td>";
           foreach($classes as $class) { if ($class['startTime'] <= 40800 && $class['endTime'] >= 40900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 40800 && $class['endTime'] >= 40900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 40900 && $class['endTime'] >= 41000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 40900 && $class['endTime'] >= 41000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 41000 && $class['endTime'] >= 41100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 41000 && $class['endTime'] >= 41100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
@@ -190,7 +202,7 @@
           foreach($classes as $class) { if ($class['startTime'] <= 42100 && $class['endTime'] >= 42200) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 42100 && $class['endTime'] >= 42200) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}    
         echo "</tr>";
         echo "<tr>";
-          echo "<td>Friday</td>";
+          echo "<td>Fri</td>";
           foreach($classes as $class) { if ($class['startTime'] <= 50800 && $class['endTime'] >= 50900) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 50800 && $class['endTime'] >= 50900) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 50900 && $class['endTime'] >= 51000) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 50900 && $class['endTime'] >= 51000) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
           foreach($classes as $class) { if ($class['startTime'] <= 51000 && $class['endTime'] >= 51100) { $status = 'true'; foreach ($coloredModules as $coloredmodule) { if ($class['moduleCode'] == $coloredmodule[0]) {$color= $coloredmodule[2];}}}}if ($status == 'true') {foreach($classes as $class) { if($class['startTime'] <= 51000 && $class['endTime'] >= 51100) {echo "<td style='background-color:".$color."'>".$class['moduleCode'].' '.$class['classNo']."</td>";}}$status = 'false';} else {echo "<td></td>";}
@@ -211,8 +223,12 @@
        
     </table>
 
+    </div>
+  </div>
+</div>
+
     <div class = "bottom-half">
-      <div class = "current-modules">
+      <div class = "current-modules bottom-section">
         <table class = "current-modules fontsset1">
           <tr>
             <td>Your Current Modules:</td>
@@ -233,11 +249,12 @@
       </div>
 
       <form class="form" action="Timetable.php" method="POST">
-        <input class="search-bar" name="module" type="text" placeholder="Enter module code here..">
-        <button type="submit">Search</button>
+        <input class="search-bar form-control" name="module" type="text" placeholder="Enter module code here..">
+        <button class="btn btn-primary btn_cu" type="submit">Search</button>
       </form>
 
       <?php
+        error_reporting(E_ALL ^ E_WARNING); //Suppress all warnings. This is a (shitty) fix for warnings appearing when searching for a Sem 2 mod, because our app only queries for sem 1 mods
         if (isset($_GET["error"])) {
           if ($_GET["error"] == "clashingtime") {
             echo "<p class = 'error-message fontsset1'>There is already a class at that timing!</p>";
@@ -310,7 +327,7 @@
         <p>
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST">
-            <select name="selectClass" placeholder="Select lecture timeslot">
+            <select class="form-control" name="selectClass" placeholder="Select lecture timeslot">
               <option value="" disabled selected>Select Lecture</option>
               <?php
               foreach($lectures as $class) {
@@ -319,11 +336,11 @@
               }
               ?>
             </select>
-            <input type="submit" name="submit" value="Submit">
+            <input class="btn btn-primary btn_cu" type="submit" name="submit" value="Submit">
           </form>
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST"> 
-            <select name="selectClass" placeholder="Select tutorial timeslot">
+            <select class="form-control" name="selectClass" placeholder="Select tutorial timeslot">
               <option value="" disabled selected>Select Tutorial</option>
               <?php
               foreach($tutorials as $class) {
@@ -332,11 +349,11 @@
               }
               ?>
             </select>
-            <input type="submit" name="submit" value="Submit">
+            <input class="btn btn-primary btn_cu" type="submit" name="submit" value="Submit">
           </form>
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST"> 
-            <select name="selectClass" placeholder="Select sectional timeslot">
+            <select class="form-control" name="selectClass" placeholder="Select sectional timeslot">
               <option value="" disabled selected>Select Sectional</option>
               <?php
               foreach($sectionals as $class) {
@@ -345,11 +362,11 @@
               }
               ?>
             </select>
-            <input type="submit" name="submit" value="Submit">
+            <input class="btn btn-primary btn_cu" type="submit" name="submit" value="Submit">
           </form>
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST">
-            <select name="selectClass" placeholder="Select recitation timeslot">
+            <select class="form-control" name="selectClass" placeholder="Select recitation timeslot">
               <option value="" disabled selected>Select Recitation</option>
               <?php
               foreach($recitations as $class) {
@@ -358,11 +375,11 @@
               }
               ?>
             </select>
-            <input type="submit" name="submit" value="Submit">
+            <input class="btn btn-primary btn_cu" type="submit" name="submit" value="Submit">
           </form>
 
           <form class = "select-form" action="includes/addClass.inc.php" method="POST">
-            <select name="selectClass" placeholder="Select lab timeslot">
+            <select class="form-control" name="selectClass" placeholder="Select lab timeslot">
               <option value="" disabled selected>Select Lab</option>
               <?php
               foreach($labs as $class) {
@@ -371,7 +388,7 @@
               }
               ?>
             </select>
-            <input type="submit" name="submit"  value="Submit">
+            <input class="btn btn-primary btn_cu" type="submit" name="submit"  value="Submit">
           </form>
 
         </p>

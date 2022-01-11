@@ -10,7 +10,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 // Create database
-$sql = "CREATE DATABASE orbitaldatabase;";
+$sql = "CREATE DATABASE IF NOT EXISTS orbitaldatabase;";
 
 if ($conn->query($sql) === TRUE) {
   echo "Database created successfully <br>";
@@ -30,7 +30,7 @@ if ($conn2->connect_error) {
   die("Connection failed: " . $conn2->connect_error);
 }
 // sql to create table
-$createusers = "CREATE TABLE users (
+$createusers = "CREATE TABLE IF NOT EXISTS users (
     usersId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     usersName varchar(128) NOT NULL,
     usersEmail varchar(128) NOT NULL,
@@ -38,7 +38,7 @@ $createusers = "CREATE TABLE users (
     usersPwd varchar(128) NOT NULL
 );";
 
-$createschedules = "CREATE TABLE schedules (
+$createschedules = "CREATE TABLE IF NOT EXISTS schedules (
     userID int(11) NOT NULL,
     moduleCode varchar(256) NOT NULL,
     moduleName text NOT NULL,
@@ -48,13 +48,13 @@ $createschedules = "CREATE TABLE schedules (
     endTime int(11) NOT NULL
 );";
 
-$createtasklist = "CREATE TABLE taskList (
+$createtasklist = "CREATE TABLE IF NOT EXISTS taskList (
 	  listId int(255) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	  userId varchar(255) NOT NULL,
 	  listName varchar(255) NOT NULL
 );";
 
-$createtask = "CREATE TABLE tasks (
+$createtask = "CREATE TABLE IF NOT EXISTS tasks (
     taskId int(255) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     userId varchar(255) NOT NULL,
     listId int(255) NOT NULL,
